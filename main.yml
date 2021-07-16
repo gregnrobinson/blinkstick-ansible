@@ -1,0 +1,18 @@
+---
+# BRING INTERFACES UP
+- hosts: all
+  become: true
+  vars_files:
+    - config.yml
+  tasks:
+    - name: Install
+      shell: 
+      tags: ['install']
+
+    - name: THE POPO
+      shell: blinkstick --blink {{ item }}
+      loop:
+         - red
+         - blue
+         - white
+      tags: ['police']
