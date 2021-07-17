@@ -1,7 +1,25 @@
 ---
-- name: Configuring Netplan
+- name: Generate Python script and copy to node
   template:
     src: cpu_usage.py.j2
     dest: /home/pi/cpu_usage.py
   become: true
-  notify: execute python
+
+- name: Install Python Dependancies
+  shell: "pip3 install {{ item }}"
+  with_items:
+    - psutil
+    - blinkstick 
+  become: true
+
+- name: Execute CPU Usage Python Script
+  shell: python3 /home/pi/cpu_usage.py </dev/null >/dev/null 2>&1 &
+  become: true
+  poll: 0
+
+- name: Add Python Script to Startup
+  ansible.builtin.lineinfile:
+    path: /etc/rc.local
+    line: python3 /home/pi/cpu_usage.py &
+    create: yes
+  become: true

@@ -1,6 +1,8 @@
 from blinkstick import blinkstick
 import psutil
-  bstick = blinkstick.find_by_serial("{{ serial }}")
+
+bstick = blinkstick.find_by_serial("{{ serial }}")
+
 if bstick is None:
     print ("No BlinkSticks found...")
 else:

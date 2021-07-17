@@ -1,8 +1,13 @@
----
+- name: Install Python Dependancies
+  shell: pip3 install psutil && pip3 install blinkstick
+  listen: "install"
+  notify: "execute_python"
+  become: true
+
 - name: Execute CPU Usage Python Script
-  command: python3 /home/pi/cpu_usage.py
-  listen: execute python
-  notify: add to startup
+  shell: python3 /home/pi/cpu_usage.py
+  listen: "execute_python"
+  notify: "add_to_startup"
   become: true
 
 - name: Add Python Script to Startup
@@ -10,5 +15,5 @@
     path: /etc/rc.local
     line: python3 /home/pi/cpu_usage.py &
     create: yes
-  listen: add to startup
+  listen: "add_to_startup"
   become: true
