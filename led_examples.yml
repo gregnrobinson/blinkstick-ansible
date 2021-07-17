@@ -2,11 +2,9 @@
 # BRING INTERFACES UP
 - hosts: all
   become: true
-  vars_files:
-    - config.yml
   gather_facts: no
   tasks:
-    - name: THE POPO
+    - name: The Police
       raw: blinkstick --morph {{ item }}
       loop:
          - red
@@ -26,7 +24,7 @@
     - config.yml
   gather_facts: no
   tasks:
-    - name: RAVE
+    - name: Rave
       poll: 0
       raw: blinkstick {{ item }}
       loop:
@@ -56,7 +54,7 @@
          - random
       tags: ['kube2']
 
-    - name: RAVE
+    - name: Rave 2.0
       poll: 0
       raw: blinkstick {{ item }}
       loop:
@@ -86,7 +84,7 @@
          - random
       tags: ['kube2']
 
-    - name: RAVE
+    - name: Rave 3.0
       poll: 0
       raw: blinkstick {{ item }}
       loop:
@@ -116,7 +114,7 @@
          - random
       tags: ['kube2']
 
-    - name: RAVE
+    - name: Rave 4.0
       poll: 0
       raw: blinkstick {{ item }}
       loop:

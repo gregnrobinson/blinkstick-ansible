@@ -2,9 +2,7 @@
 # BRING INTERFACES UP
 - hosts: all
   become: true
-  vars_files:
-    - config.yml
-  gather_facts: no
+  gather_facts: yes
   tasks:
     - name: THE POPO
       raw: blinkstick -i

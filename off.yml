@@ -2,9 +2,7 @@
 # BRING INTERFACES UP
 - hosts: all
   become: true
-  vars_files:
-    - config.yml
   gather_facts: no
   tasks:
-    - name: THE POPO
+    - name: Blinkstick shutting off...
       raw: blinkstick off
