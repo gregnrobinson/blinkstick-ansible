@@ -19,3 +19,4 @@
     name: "check mail"
     user: root
     job: "python3 /home/pi/check_gmail.py"
+    state: absent

@@ -3,10 +3,12 @@
   become: true
   gather_facts: no
   vars:
+    install_packages: false
     python_packages:
       - blinkstick
       - psutil
       - feedparser
+      - ansible
     gmail_user: greg.robinson@arctiq.ca
     gmail_pass: jvehuvdadrkjssam
   pre_tasks:
@@ -15,7 +17,7 @@
       become: true
       loop: "{{ python_packages }}"
   roles:
-    - get_info
-    - cpu_usage
-    - internet_status
-    - check_gmail
+    - { role: get_info, tags: ["get_info"] }
+    - { role: cpu_usage, tags: ["cpu_usage"] }
+    - { role: internet_status, tags: ["internet_status"] }
+    - { role: check_gmail, tags: ["check_gmail"] }

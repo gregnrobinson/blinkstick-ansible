@@ -3,5 +3,5 @@ from blinkstick import blinkstick
 bstick = blinkstick.find_by_serial("{{ serial }}")
 
 #set and get device info-block1 here
-bstick.set_info_block("{{ ansible_host }}")
-print(bstick.get_info_block())
+bstick.set_info_block1("Kitchen BlinkStick")
+print (bstick.get_info_block1())
