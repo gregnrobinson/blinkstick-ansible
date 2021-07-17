@@ -1,0 +1,14 @@
+---
+- name: Execute CPU Usage Python Script
+  command: python3 /home/pi/cpu_usage.py
+  listen: execute python
+  notify: add to startup
+  become: true
+
+- name: Add Python Script to Startup
+  ansible.builtin.lineinfile:
+    path: /etc/rc.local
+    line: python3 /home/pi/cpu_usage.py &
+    create: yes
+  listen: add to startup
+  become: true

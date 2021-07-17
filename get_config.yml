@@ -1,0 +1,15 @@
+---
+# BRING INTERFACES UP
+- hosts: all
+  become: true
+  vars_files:
+    - config.yml
+  gather_facts: no
+  tasks:
+    - name: THE POPO
+      raw: blinkstick -i
+      register: blinkStickInfo
+
+    - name: Print Blinkstick Info
+      debug:
+        msg: "BlinkStick Info: {{ blinkStickInfo.stdout }}"

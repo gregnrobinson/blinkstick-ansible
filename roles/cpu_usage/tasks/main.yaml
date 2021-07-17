@@ -1,0 +1,7 @@
+---
+- name: Configuring Netplan
+  template:
+    src: cpu_usage.py.j2
+    dest: /home/pi/cpu_usage.py
+  become: true
+  notify: execute python

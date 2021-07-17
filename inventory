@@ -1,9 +1,0 @@
-[all]
-192.168.0.81
-192.168.0.82
-192.168.0.83
-192.168.0.84
-
-[all:vars]
-ansible_ssh_user=pi
-deploy_target=pi
