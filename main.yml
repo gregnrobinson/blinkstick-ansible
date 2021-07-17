@@ -1,7 +1,20 @@
 ---
-# Deploy Python Scripts for each node
 - hosts: all
   become: true
-  gather_facts: yes
-  tasks:
-    - include_role: name=cpu_usage
+  gather_facts: no
+  vars:
+    python_packages:
+      - blinkstick
+      - psutil
+    gmail_user: greg.robinson@arctiq.ca
+    gmail_pass: x3-eXu.@tbQB_aaK27d476GJ
+  pre_tasks:
+    - name: Install Python Dependancies
+      pip: name="{{ item }}"
+      become: true
+      loop: "{{ python_packages }}"
+  roles:
+    - get_info
+    - cpu_usage
+    - internet_status
+    - check_gmail

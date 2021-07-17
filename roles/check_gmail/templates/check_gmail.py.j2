@@ -1,0 +1,39 @@
+import urllib             # For BasicHTTPAuthentication
+import feedparser         # For parsing the feed
+from blinkstick import blinkstick
+
+username = "{{ gmail_user }}"
+password = '{{ gmail_pass }}'
+
+#No need to edit anything below this line
+
+_URL = "https://mail.google.com/gmail/feed/atom"
+
+bstick = blinkstick.find_by_serial("{{ serial }}")
+
+#This overriden class will automatically supply username and password for atom URL
+class my_opener (urllib.FancyURLopener):
+    # Override
+    def get_user_passwd(self, host, realm, clear_cache=0):
+        return (username, password)
+
+def auth():
+    '''The method to do HTTPBasicAuthentication'''
+    opener = my_opener()
+    f = opener.open(_URL)
+    feed = f.read()
+    return feed
+
+def readmail(feed):
+    '''Parse the Atom feed and print a summary'''
+    atom = feedparser.parse(feed)
+    print ""
+    print atom.feed.title
+    print "You have %s new mails" % len(atom.entries)
+
+    if bstick is not None and len(atom.entries) > 0:
+        bstick.blink(name="red")
+
+if __name__ == "__main__":
+    f = auth()  # Do auth and then get the feed
+    readmail(f) # Let the feed be chewed by feedparser 

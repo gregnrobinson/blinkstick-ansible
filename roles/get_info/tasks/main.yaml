@@ -1,12 +1,12 @@
 ---
 - name: Generate Python script and copy to node
   template:
-    src: cpu_usage.py.j2
-    dest: /home/pi/cpu_usage.py
+    src: get_info.py.j2
+    dest: /home/pi/get_info.py
   become: true
 
 - name: execute
-  shell: python3 /home/pi/cpu_usage.py 2>&1 &
+  shell: python3 /home/pi/get_info.py 2>&1 &
   become: true
   register: python
 
@@ -17,6 +17,6 @@
 - name: Add Python Script to Startup
   ansible.builtin.lineinfile:
     path: /etc/rc.local
-    line: python3 /home/pi/cpu_usage.py &
+    line: python3 /home/pi/get_info.py &
     create: yes
   become: true

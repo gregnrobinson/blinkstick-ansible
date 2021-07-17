@@ -1,10 +1,9 @@
 ---
-# BRING INTERFACES UP
 - hosts: all
   become: true
   gather_facts: yes
   tasks:
-    - name: THE POPO
+    - name: Get Serial Numbers
       raw: blinkstick -i
       register: blinkStickInfo
 

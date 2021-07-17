@@ -1,5 +1,4 @@
 ---
-# BRING INTERFACES UP
 - hosts: all
   become: true
   gather_facts: no
