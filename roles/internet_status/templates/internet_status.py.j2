@@ -27,7 +27,7 @@ led = blinkstick.find_by_serial("{{ serial }}")
 
 # Can't do anything if BlinkStick is not connected
 if led is None:
-	print "BlinkStick not found...\r\nExiting..."
+	print("BlinkStick not found...\r\nExiting...")
 else:
 	try:
 		# Store value of last state in this variable
@@ -38,7 +38,7 @@ else:
 				# If previously internet was disconnected, then print message
 				# and set BlinkStick to green
 				if not connected:
-					print "Internet is up!"
+					print("Internet is up!")
 					connected = True
 					led.set_color(name="green")
 
@@ -47,14 +47,14 @@ else:
 			else:
 				# If previously internet connected, then print message
 				if connected:
-					print "Internet is down..."
+					print("Internet is down...")
 					connected = False
 
 				# BlinkStick pulse API call lasts for 1 second so this acts
 				# as delay before next check for internet is performed
 				led.pulse(name="red")
 	except KeyboardInterrupt:
-		print "Exiting... Bye!"
+		print("Exiting... Bye!")
 
 	led.turn_off()
 

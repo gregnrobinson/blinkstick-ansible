@@ -14,9 +14,8 @@
   debug:
     var: python
 
-- name: Add Python Script to Startup
-  ansible.builtin.lineinfile:
-    path: /etc/rc.local
-    line: python3 /home/pi/check_gmail.py &
-    create: yes
-  become: true
+- name: Setup cron to run every minute.
+  ansible.builtin.cron:
+    name: "check mail"
+    user: root
+    job: "python3 /home/pi/check_gmail.py"

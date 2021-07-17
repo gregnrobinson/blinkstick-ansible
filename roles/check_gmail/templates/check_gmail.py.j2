@@ -1,39 +1,50 @@
-import urllib             # For BasicHTTPAuthentication
-import feedparser         # For parsing the feed
 from blinkstick import blinkstick
+import datetime
+import email
+import imaplib
+import mailbox
 
-username = "{{ gmail_user }}"
-password = '{{ gmail_pass }}'
-
-#No need to edit anything below this line
-
-_URL = "https://mail.google.com/gmail/feed/atom"
+EMAIL_ACCOUNT = "{{ gmail_user }}"
+PASSWORD = "{{ gmail_pass }}"
 
 bstick = blinkstick.find_by_serial("{{ serial }}")
 
-#This overriden class will automatically supply username and password for atom URL
-class my_opener (urllib.FancyURLopener):
-    # Override
-    def get_user_passwd(self, host, realm, clear_cache=0):
-        return (username, password)
+mail = imaplib.IMAP4_SSL('imap.gmail.com')
+mail.login(EMAIL_ACCOUNT, PASSWORD)
+mail.list()
+mail.select('inbox')
+result, data = mail.uid('search', None, "UNSEEN") # (ALL/UNSEEN)
+i = len(data[0].split())
 
-def auth():
-    '''The method to do HTTPBasicAuthentication'''
-    opener = my_opener()
-    f = opener.open(_URL)
-    feed = f.read()
-    return feed
+for x in range(i):
+    latest_email_uid = data[0].split()[x]
+    result, email_data = mail.uid('fetch', latest_email_uid, '(RFC822)')
+    # result, email_data = conn.store(num,'-FLAGS','\\Seen') 
+    # this might work to set flag to seen, if it doesn't already
+    raw_email = email_data[0][1]
+    raw_email_string = raw_email.decode('utf-8')
+    email_message = email.message_from_string(raw_email_string)
 
-def readmail(feed):
-    '''Parse the Atom feed and print a summary'''
-    atom = feedparser.parse(feed)
-    print ""
-    print atom.feed.title
-    print "You have %s new mails" % len(atom.entries)
+    # Header Details
+    date_tuple = email.utils.parsedate_tz(email_message['Date'])
+    if date_tuple:
+        local_date = datetime.datetime.fromtimestamp(email.utils.mktime_tz(date_tuple))
+        local_message_date = "%s" %(str(local_date.strftime("%a, %d %b %Y %H:%M:%S")))
+    email_from = str(email.header.make_header(email.header.decode_header(email_message['From'])))
+    email_to = str(email.header.make_header(email.header.decode_header(email_message['To'])))
+    subject = str(email.header.make_header(email.header.decode_header(email_message['Subject'])))
 
-    if bstick is not None and len(atom.entries) > 0:
-        bstick.blink(name="red")
-
-if __name__ == "__main__":
-    f = auth()  # Do auth and then get the feed
-    readmail(f) # Let the feed be chewed by feedparser 
+    # Body details
+    for part in email_message.walk():
+        if part.get_content_type() == "text/plain":
+            bstick.morph(steps=50, name="blue", duration=1000)
+            bstick.morph(steps=50, name="green", duration=1000)
+            body = part.get_payload(decode=True)
+            file_name = "email_" + str(x) + ".txt"
+            output_file = open(file_name, 'w')
+            output_file.write("From: %s\nTo: %s\nDate: %s\nSubject: %s\n\nBody: \n\n%s" %(email_from, email_to,local_message_date, subject, body.decode('utf-8')))
+            output_file.close()
+        else:
+            bstick.set_color(green)
+            continue
+                     

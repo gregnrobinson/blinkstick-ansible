@@ -6,8 +6,9 @@
     python_packages:
       - blinkstick
       - psutil
+      - feedparser
     gmail_user: greg.robinson@arctiq.ca
-    gmail_pass: x3-eXu.@tbQB_aaK27d476GJ
+    gmail_pass: jvehuvdadrkjssam
   pre_tasks:
     - name: Install Python Dependancies
       pip: name="{{ item }}"
