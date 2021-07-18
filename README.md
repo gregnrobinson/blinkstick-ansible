@@ -1,4 +1,4 @@
-# Controlling Blinksticks with Ansible
+# Blinkstick Ansible Tools
 
 The reason for creating this repository was for me to have an easy way to operate 4 blinkstick nanos that I had bought for my Raspberry pi cluster. When you have multiple nodes with seperate blinksticks, having an abstraction layer on all four nodes makes it much easier to build tools that execute against all nodes, or a subset of nodes, or a subset of a subset of nodes and so on.
 
