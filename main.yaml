@@ -3,21 +3,15 @@
   become: true
   gather_facts: no
   vars:
-    install_packages: false
     python_packages:
       - blinkstick
       - psutil
       - feedparser
       - ansible
-  pre_tasks:
-    - name: Install Python Dependancies
-      pip:
-        name: "{{ item }}"
-        executable: pip3
-      become: true
-      loop: "{{ python_packages }}"
   roles:
-    - { role: get_info, tags: ["get_info", "install"] }
+    - { role: get_info, tags: ["get-info", "install"] }
+    - { role: install, tags: ["install"] }
     - { role: cpu_usage, tags: ["cpu_usage", "install"] }
     - { role: internet_status, tags: ["internet_status", "install"] }
+    - { role: party, tags: ["party"] }
     - { role: turnoff, tags: ["off"] }

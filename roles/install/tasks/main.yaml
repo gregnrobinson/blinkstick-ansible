@@ -1,0 +1,12 @@
+---
+- name: Install Python Dependancies
+  pip:
+    name: "{{ item }}"
+    executable: pip3
+  become: true
+  loop: "{{ python_packages }}"
+  register: python
+
+- name: output
+  debug:
+    var: python
