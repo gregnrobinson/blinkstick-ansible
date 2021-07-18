@@ -9,9 +9,9 @@
       - feedparser
       - ansible
   roles:
-    - { role: get_info, tags: ["get-info", "install"] }
+    - { role: get_info, tags: ["get-info"] }
     - { role: install, tags: ["install"] }
-    - { role: cpu_usage, tags: ["cpu-usage", "install"] }
-    - { role: internet_status, tags: ["internet-status", "install"] }
+    - { role: cpu_usage, tags: ["cpu-usage"] }
+    - { role: internet_status, tags: ["internet-status"] }
     - { role: party, tags: ["party"] }
     - { role: turnoff, tags: ["off"] }

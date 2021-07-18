@@ -7,7 +7,7 @@ Ansible seemed like the easiest path forward as I can make each tool as a role a
 Much of the inspiration is from https://github.com/arvydas/blinkstick-python/wiki where some of the python snippets worked as is and some did not. Some of the snippets are from Python 2.7 and wouldn't work on Python 3.X. I am using Atleast Python 3.8 for everything python related in this project.
 
 <p float="middle">
-  <img src="https://user-images.githubusercontent.com/26353407/126085966-76db08f1-8ca8-4ef7-a2d0-428a34d1aa35.jpg" width="600" />
+  <img src="https://user-images.githubusercontent.com/26353407/126085349-a9253682-72b8-4ed7-8a85-bc4743aa422b.jpg" width="270" />
 </p>
 
 ## Instructions
@@ -36,14 +36,14 @@ If you want to find the blinkstick serial numbers after mofifying the IP address
 # Retrieve all Blinkstick information and serial number. Ensure the blinkstick is plugged into a USB slot before executing.
 ansible-playbook main.yaml -t get-info
 
-# Used to everything running in one execution. the turnoff role is excluded from this tag.
+# Install all python library dependancies. Add or removes in the the python_packages list in main.yaml and re run this command to make the change on all nodes. 
 ansible-playbook main.yaml -t install
 
 # This roles uses the blinkstick python library to substitute the serial number from the ansible inventory and parse it as python. The script is then executed on the remote machines.
-ansible-playbook main.yaml -t cpu-usage
+ansible-playbook main.yaml -t cpu_usage
 
 # This roles uses the blinkstick python library to substitute the serial number from the ansible inventory and parse it as python. The script is then executed on the remote machines.
-ansible-playbook main.yaml -t internet-status
+ansible-playbook main.yaml -t internet_status
 
 # Throw a party to celebrate getting everything installed.
 ansible-playbook main.yaml -t party
