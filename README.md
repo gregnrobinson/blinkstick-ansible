@@ -1,8 +1,11 @@
-# Blinkstick Ansible Tools
+# Controlling Blinksticks with Ansible
 
 The reason for creating this repository was for me to have an easy way to operate 4 blinkstick nanos that I had bought for my Raspberry pi cluster. When you have multiple nodes with seperate blinksticks, having an abstraction layer on all four nodes makes it much easier to build tools that execute against all nodes, or a subset of nodes, or a subset of a subset of nodes and so on.
 
 Ansible seemed like the easiest path forward as I can make each tool as a role and use jinja templating for the python scripts that need to execute on the remote nodes. Using the python library directly, there is much more flexibility as to what can be achievied vs the cli tool that is provided also. When thinking about future development, this makes sense to be the standard method for all roles.
+
+![IMG_7288](https://user-images.githubusercontent.com/26353407/126085349-a9253682-72b8-4ed7-8a85-bc4743aa422b.jpg)
+
 
 ## Instructions
 
