@@ -9,6 +9,7 @@ Much of the inspiration is from https://github.com/arvydas/blinkstick-python/wik
 <p float="middle">
   <img src="https://user-images.githubusercontent.com/26353407/126085693-7bb3bade-3e08-4f3e-a6bd-5cd708796ed6.jpg" width="600" />
 </p>
+
 ## Instructions
 
 Get the following packages and materials on the machine executing Ansible. I am using 4 Blinkstick Nanos for this project, but any blinkstick should work.
