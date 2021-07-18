@@ -6,7 +6,6 @@ Ansible seemed like the easiest path forward as I can make each tool as a role a
 
 ![IMG_7288](https://user-images.githubusercontent.com/26353407/126085349-a9253682-72b8-4ed7-8a85-bc4743aa422b.jpg)
 
-
 ## Instructions
 
 Get the following packages and materials on the machine executing Ansible. I am using 4 Blinkstick Nanos for this project, but any blinkstick should work.
