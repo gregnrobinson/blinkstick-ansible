@@ -4,5 +4,5 @@
   become: true
   gather_facts: no
   tasks:
-    - name: Blinkstick shutting off...
+    - name: Turning off all blinksticks...
       raw: blinkstick off

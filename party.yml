@@ -1,29 +1,11 @@
 ---
 - hosts: all
   become: true
-  gather_facts: no
-  tasks:
-    - name: The Police
-      raw: blinkstick --morph {{ item }}
-      loop:
-         - red
-         - blue
-         - white
-         - red
-         - blue
-         - white
-      tags: ['police']
-
-    - name: SET MODE 3
-      raw: blinkstick --set-mode 3
-
-- hosts: all
-  become: true
   vars_files:
     - config.yml
   gather_facts: no
   tasks:
-    - name: Rave
+    - name: Party
       poll: 0
       raw: blinkstick {{ item }}
       loop:
@@ -51,9 +33,9 @@
          - random
          - random
          - random
-      tags: ['kube2']
+      tags: ['party']
 
-    - name: Rave 2.0
+    - name: Party2
       poll: 0
       raw: blinkstick {{ item }}
       loop:
@@ -81,9 +63,9 @@
          - random
          - random
          - random
-      tags: ['kube2']
+      tags: ['party']
 
-    - name: Rave 3.0
+    - name: Party3
       poll: 0
       raw: blinkstick {{ item }}
       loop:
@@ -111,9 +93,9 @@
          - random
          - random
          - random
-      tags: ['kube2']
+      tags: ['party']
 
-    - name: Rave 4.0
+    - name: party4
       poll: 0
       raw: blinkstick {{ item }}
       loop:
@@ -141,4 +123,4 @@
          - random
          - random
          - random
-      tags: ['rave']
+      tags: ['party']

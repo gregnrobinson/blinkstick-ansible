@@ -9,15 +9,15 @@
       - psutil
       - feedparser
       - ansible
-    gmail_user: greg.robinson@arctiq.ca
-    gmail_pass: jvehuvdadrkjssam
   pre_tasks:
     - name: Install Python Dependancies
-      pip: name="{{ item }}"
+      pip:
+        name: "{{ item }}"
+        executable: pip3
       become: true
       loop: "{{ python_packages }}"
   roles:
     - { role: get_info, tags: ["get_info"] }
     - { role: cpu_usage, tags: ["cpu_usage"] }
     - { role: internet_status, tags: ["internet_status"] }
-    - { role: check_gmail, tags: ["check_gmail"] }
+    - { role: off, tags: ["off"] }

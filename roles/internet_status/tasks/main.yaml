@@ -7,8 +7,8 @@
 
 - name: Execute CPU Usage Python Script
   shell: python3 /home/pi/internet_status.py 2>&1 &
-  become: true
   register: python
+  become: true
 
 - name: output
   debug:

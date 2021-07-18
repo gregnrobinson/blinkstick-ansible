@@ -1,0 +1,15 @@
+---
+- name: Generate Python script and copy to node
+  template:
+    src: off.py.j2
+    dest: /home/pi/off.py
+  become: true
+
+- name: Execute CPU Usage Python Script
+  shell: python3 /home/pi/off.py 2>&1 &
+  register: python
+  become: true
+
+- name: output
+  debug:
+    var: python

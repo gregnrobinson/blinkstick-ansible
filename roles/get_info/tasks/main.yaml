@@ -7,12 +7,12 @@
 
 - name: execute
   shell: python3 /home/pi/get_info.py 2>&1 &
-  become: true
   register: python
+  become: true
 
 - name: output
   debug:
-    var: python
+    var: python.stdout_lines
 
 - name: Add Python Script to Startup
   ansible.builtin.lineinfile:
