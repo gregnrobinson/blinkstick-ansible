@@ -1,8 +1,0 @@
----
-# BRING INTERFACES UP
-- hosts: all
-  become: true
-  gather_facts: no
-  tasks:
-    - name: Turning off all blinksticks...
-      raw: blinkstick off

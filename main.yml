@@ -17,7 +17,7 @@
       become: true
       loop: "{{ python_packages }}"
   roles:
-    - { role: get_info, tags: ["get_info"] }
-    - { role: cpu_usage, tags: ["cpu_usage"] }
-    - { role: internet_status, tags: ["internet_status"] }
-    - { role: off, tags: ["off"] }
+    - { role: get_info, tags: ["get_info", "install"] }
+    - { role: cpu_usage, tags: ["cpu_usage", "install"] }
+    - { role: internet_status, tags: ["internet_status", "install"] }
+    - { role: turnoff, tags: ["off"] }
