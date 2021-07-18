@@ -6,8 +6,9 @@ Ansible seemed like the easiest path forward as I can make each tool as a role a
 
 ## Instructions
 
-Get the following packages on the machine executing Ansible.
+Get the following packages and materials on the machine executing Ansible. I am using 4 Blinkstick Nanos for this project, but any blinkstick should work.
 
+- [Get a Blinkstick](https://www.blinkstick.com/products/blinkstick-nano) 
 - [ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
 - [python 3.X](https://www.python.org/downloads/)
 - [pip](https://pip.pypa.io/en/stable/installing/)
@@ -55,15 +56,9 @@ There are three main options when selecting a blinkstick in python.
 # get all blinksticks
 bstick = blinkstick.find_all():
 
-# Grab only the first blinkstick, however that happens.
-bstick = blinkstick.first():
-
-# get all blinksticks
+# This was the method chosen for most roles. Even tho it requires the serial to be set for each node prior to execution, I decided to go for the slightly harder way of doing this using jinja2 templating to substitute the serial for each node during role execution.
 bstick = blinkstick.find_by_serial():
 
-```
-
-
-
-
+# Grab only the first blinkstick, this is good for when you only have one blinkstick plugged into a node. Saves you from getting the serial number everytime. As I write this, I think it would be easier to just use this method.
+bstick = blinkstick.first():
 ```
