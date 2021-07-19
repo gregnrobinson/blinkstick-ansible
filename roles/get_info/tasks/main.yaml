@@ -1,5 +1,5 @@
 ---
-- name: Generate Python script and copy to node
+- name: generate
   template:
     src: get_info.py.j2
     dest: /home/pi/get_info.py
@@ -14,7 +14,7 @@
   debug:
     var: python.stdout_lines
 
-- name: Add Python Script to Startup
+- name: add-to-startup
   ansible.builtin.lineinfile:
     path: /etc/rc.local
     line: python3 /home/pi/get_info.py &

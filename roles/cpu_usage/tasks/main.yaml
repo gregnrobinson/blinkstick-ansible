@@ -1,5 +1,5 @@
 ---
-- name: Generate Python script and copy to node
+- name: generate
   template:
     src: cpu_usage.py.j2
     dest: /home/pi/cpu_usage.py
@@ -14,9 +14,8 @@
   debug:
     var: python
 
-- name: Add Python Script to Startup
+- name: add-to-startup
   ansible.builtin.lineinfile:
     path: /etc/rc.local
     line: python3 /home/pi/cpu_usage.py &
-    create: yes
   become: true

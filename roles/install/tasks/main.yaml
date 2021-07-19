@@ -1,5 +1,5 @@
 ---
-- name: Install Python Dependancies
+- name: install
   pip:
     name: "{{ item }}"
     executable: pip3

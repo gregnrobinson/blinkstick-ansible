@@ -1,5 +1,5 @@
 ---
-- name: Change brightness
+- name: execute
   vars:
     color: "{{ base_config.color }}"
     brightness: "{{ base_config.brightness }}"

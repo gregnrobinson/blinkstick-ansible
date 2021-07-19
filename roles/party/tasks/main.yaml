@@ -1,5 +1,5 @@
 ---
-- name: party
+- name: execute
   poll: 0
   raw: blinkstick {{ item }}
   tags: ['party-blink']
