@@ -3,8 +3,8 @@
   become: true
   gather_facts: no
   vars:
-    color: blue
-    brightness: 70 # value between 0 and 100
+    color: green
+    brightness: 100 # value between 0 and 100
     python_packages:
       - blinkstick
       - psutil
