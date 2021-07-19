@@ -1,33 +1,51 @@
 ---
-#- name: aliases
-#  include_role:
-#    name: aliases 
+- name: aliases
+  include_role:
+    name: aliases
+  run_once: true
 
-- name: cron - day-mode
-  vars:
-    minute: 0
-    hour: 8
-    day_month: "*"
-    month: "*"
-    day_week: "*"
-  ansible.builtin.lineinfile:
-    line: "{{ minute }} {{ hour }} {{ day_month }} {{ month }} {{ day_week }} root blink-day"
-  register: output
-  delegate_to: 127.0.0.1
+- name: current user
+  shell: whoami
+  register: user
+  become: false
+  delegate_to: localhost
+  run_once: true
 
-- name: cron - night-time
-  vars:
-    minute: 0
-    hour: 21
-    day_month: "*"
-    month: "*"
-    day_week: "*"
-  ansible.builtin.lineinfile:
-    line: "{{ minute }} {{ hour }} {{ day_month }} {{ month }} {{ day_week }} root blink-night"
+- name: cron - day
+  cron:
+    name: "Activate Day Mode"
+    minute: "*"
+    hour: "08"
+    weekday: "0-6"
+    job: "blink-day"
+    user: "{{ user.stdout }}"
+    disabled: "no"
+  delegate_to: localhost
   register: output
-  delegate_to: 127.0.0.1
+  run_once: true
+
+- name: cron - night
+  cron:
+    name: "Activate Night Mode"
+    minute: "*"
+    hour: "21"
+    weekday: "0-6"
+    job: "blink-night"
+    user: "{{ user.stdout }}"
+    disabled: "no"
+  delegate_to: localhost
+  register: output
+  run_once: true
+
+- name: cron - verify
+  shell: crontab -l
+  delegate_to: localhost
+  become: false
+  register: output
+  run_once: true
 
 - name: output
   debug:
-    var: output
-  delegate_to: 127.0.0.1 
+    var: output.stdout_lines
+  delegate_to: localhost
+  run_once: true
