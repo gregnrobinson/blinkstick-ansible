@@ -51,7 +51,7 @@ ansible-playbook main.yaml -t cpu-usage
 ansible-playbook main.yaml -t internet-status
 
 # Throw a party to celebrate getting everything installed.
-ansible-playbook main.yaml -t party
+ansible-playbook main.yaml -t rave
 
 # Set the base color and brightness
 ansible-playbook main.yaml -t base-config
