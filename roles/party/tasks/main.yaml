@@ -18,7 +18,7 @@
   raw: blinkstick --pulse {{ item }}
   tags: ['party-pulse']
   loop:
-    - red
+    - white
 
 - name: Party Pulse
   poll: 0
