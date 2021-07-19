@@ -5,6 +5,7 @@
   register: zprofile
   delegate_to: localhost
   become: false
+  run_once: true
 
 - name: look for bashrc
   stat:
@@ -12,18 +13,21 @@
   register: bashrc
   delegate_to: localhost
   become: false
+  run_once: true
 
 - name: current directory
   shell: pwd
   become: false
   register: dir
   delegate_to: localhost
+  run_once: true
   
 - name: output - current directory
   debug:
     var: dir
   become: false
   delegate_to: localhost
+  run_once: true
 
 - name: append aliases to zprofile
   vars:
@@ -36,6 +40,7 @@
   become: false
   when: zprofile.stat.exists
   delegate_to: localhost
+  run_once: true
 
 - name: append aliases to bashrc
   vars:
@@ -48,3 +53,4 @@
   become: false
   when: bashrc.stat.exists
   delegate_to: localhost
+  run_once: true
