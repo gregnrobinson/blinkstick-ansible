@@ -1,4 +1,4 @@
-# Blinkstick Ansible Tools
+# Blinkstick Ansible
 
 The reason for creating this repository was for me to have an easy way to operate 4 Blinkstick Nanos that I had bought for my Raspberry pi cluster. When you have multiple nodes with separate Blinksticks, having an abstraction layer on all four nodes makes it much easier to build tools that execute against all nodes, or a subset of nodes, or a subset of a subset of nodes, and so on.
 
@@ -45,7 +45,7 @@ ansible-playbook main.yaml -t cpu_usage
 
 # This roles uses the blinkstick python library to substitute the serial number from the ansible inventory and parse it as python. 
 # A python script will continuously monitor the CPU percentage of the nodes and update the color accordingly.
-ansible-playbook main.yaml -t internet_status
+ansible-playbook main.yaml -t internet-status
 
 # Throw a party to celebrate getting everything installed.
 ansible-playbook main.yaml -t party
