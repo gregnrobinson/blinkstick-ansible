@@ -9,9 +9,8 @@ Much of the inspiration is from https://github.com/arvydas/blinkstick-python/wik
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/26353407/126086407-b12d67a9-ed40-4127-b408-b52fa5732079.jpg" width="500" />
-  <img src="https://user-images.githubusercontent.com/26353407/126088941-ee0c478d-0568-4880-beeb-f0a48fedba46.jpg" width="500" />
+  <img src="https://user-images.githubusercontent.com/26353407/126089370-c2a9e656-3a8e-4df7-93c9-4fee22e12e2c.jpg" width="500" />
 </p>
-
 
 ## Instructions
 
