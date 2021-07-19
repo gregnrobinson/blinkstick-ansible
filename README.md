@@ -48,6 +48,9 @@ ansible-playbook main.yaml -t internet_status
 # Throw a party to celebrate getting everything installed.
 ansible-playbook main.yaml -t party
 
+# Adjust the blinkstick brightness by modifying the brightness variable in main.yaml. The base_color variable is used in this role.
+ansible-playbook main.yaml -t brightness
+
 # Turn all the Blinksticks off. (Useful for nighttime when you want to sleep. Use a cron to turn off automatically.)
 ansible-playbook main.yaml -t turnoff
 ```
