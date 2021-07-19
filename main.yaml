@@ -14,8 +14,8 @@
   roles:
     - { role: get_info, tags: ["get-info", "deploy"] }
     - { role: install, tags: ["install", "deploy"] }
-    - { role: base_config, tags: ["deploy", "base-config", "deploy"] }
     - { role: cpu_usage, tags: ["cpu-usage", "deploy"] }
     - { role: internet_status, tags: ["internet-status", "deploy"] }
     - { role: party, tags: ["party", "deploy"] }
+    - { role: base_config, tags: ["deploy", "base-config", "deploy"] }
     - { role: turnoff, tags: ["off"] }
