@@ -60,7 +60,7 @@ ansible-playbook main.yaml -t brightness
 ansible-playbook main.yaml -t brightness -e brightness=50
 
 # Turn all the Blinksticks off. (Useful for nighttime when you want to sleep. Use a cron to turn off automatically.)
-ansible-playbook main.yaml -t turnoff
+ansible-playbook main.yaml -t off
 ```
 
 # Challenges
