@@ -61,6 +61,28 @@ ansible-playbook main.yaml -t base-config -e color=cyan -e brightness=50
 
 # Turn all the Blinksticks off. (Useful for nighttime when you want to sleep. Use a cron to turn off automatically.)
 ansible-playbook main.yaml -t off
+
+# Creates aliases in either ~/.zprofile or ~/.bashrc, dynamically decided by the role.
+ansible-playbook main.yaml -t aliases
+
+  # The following aliases are added to either ~/.zprofile or ~/.bashrc....
+  export BLINK_PATH="{{ dir }}"
+  export ANSIBLE_CONFIG="{{ dir }}/ansible.cfg"
+
+  # blinksticks - base-config
+  alias blink-base='ansible-playbook ${BLINK_PATH}/main.yaml -i ${BLINK_PATH}/inventory/all.yaml -t base-config'
+
+  # blinksticks - turnoff
+  alias blink-off='ansible-playbook ${BLINK_PATH}/main.yaml -i ${BLINK_PATH}/inventory/all.yaml -t off'
+
+  # blinksticks - rave
+  alias blink-rave='ansible-playbook ${BLINK_PATH}/main.yaml -i ${BLINK_PATH}/inventory/all.yaml -t rave'
+
+  # blinksticks - night mode
+  alias blink-night='ansible-playbook ${BLINK_PATH}/main.yaml -i ${BLINK_PATH}/inventory/all.yaml -t base-config -e color=cyan -e brightness=30'
+
+  # blinksticks - day mode
+  alias blink-day='ansible-playbook ${BLINK_PATH}/main.yaml -i ${BLINK_PATH}/inventory/all.yaml -t base-config -e color=green -e brightness=50'
 ```
 
 # Challenges

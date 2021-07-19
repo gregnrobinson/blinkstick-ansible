@@ -1,0 +1,33 @@
+---
+#- name: aliases
+#  include_role:
+#    name: aliases 
+
+- name: cron - day-mode
+  vars:
+    minute: 0
+    hour: 8
+    day_month: "*"
+    month: "*"
+    day_week: "*"
+  ansible.builtin.lineinfile:
+    line: "{{ minute }} {{ hour }} {{ day_month }} {{ month }} {{ day_week }} root blink-day"
+  register: output
+  delegate_to: 127.0.0.1
+
+- name: cron - night-time
+  vars:
+    minute: 0
+    hour: 21
+    day_month: "*"
+    month: "*"
+    day_week: "*"
+  ansible.builtin.lineinfile:
+    line: "{{ minute }} {{ hour }} {{ day_month }} {{ month }} {{ day_week }} root blink-night"
+  register: output
+  delegate_to: 127.0.0.1
+
+- name: output
+  debug:
+    var: output
+  delegate_to: 127.0.0.1 

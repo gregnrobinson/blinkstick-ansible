@@ -11,6 +11,12 @@
       - psutil
       - feedparser
       - ansible
+  pre_tasks:
+    - name: BLINK_PATH
+      shell: pwd
+      register: blinkpath
+      delegate_to: localhost
+      become: false
   roles:
     - { role: get_info,        tags: ["get-info", "deploy"] }
     - { role: install,         tags: ["install", "deploy"] }
@@ -18,4 +24,5 @@
     - { role: internet_status, tags: ["internet-status", "deploy"] }
     - { role: rave,            tags: ["rave"] }
     - { role: base_config,     tags: ["base-config"] }
+    - { role: aliases,         tags: ["aliases"], vars: { ANSIBLE_CONFIG: "{{ blinkpath }}/ansible.cfg" } }
     - { role: turnoff,         tags: ["off"] }

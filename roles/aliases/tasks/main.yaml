@@ -1,0 +1,50 @@
+---
+- name: look for zprofile
+  stat:
+    path: ~/.zprofile
+  register: zprofile
+  delegate_to: localhost
+  become: false
+
+- name: look for bashrc
+  stat:
+    path: ~/.bashrc
+  register: bashrc
+  delegate_to: localhost
+  become: false
+
+- name: current directory
+  shell: pwd
+  become: false
+  register: dir
+  delegate_to: localhost
+  
+- name: output - current directory
+  debug:
+    var: dir
+  become: false
+  delegate_to: localhost
+
+- name: append aliases to zprofile
+  vars:
+    ANSIBLE_CONFIG: "{{ dir.stdout }}/ansible.cfg"
+    BLINK_PATH: "{{ dir.stdout }}"
+  blockinfile:
+    block: '{{ lookup("template", "aliases.j2") }}'
+    path: ~/.zprofile
+    backup: yes
+  become: false
+  when: zprofile.stat.exists
+  delegate_to: localhost
+
+- name: append aliases to bashrc
+  vars:
+    ANSIBLE_CONFIG: "{{ dir.stdout }}/ansible.cfg"
+    BLINK_PATH: "{{ dir.stdout }}"
+  blockinfile:
+    block: '{{ lookup("template", "aliases.j2") }}'
+    path: ~/.bashrc
+    backup: yes
+  become: false
+  when: bashrc.stat.exists
+  delegate_to: localhost
