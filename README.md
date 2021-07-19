@@ -76,6 +76,6 @@ bstick = blinkstick.find_all():
 # This was the method chosen for most roles. Even tho it requires the serial to be set for each node prior to execution, I decided to go for the slightly harder way of doing this using jinja2 templating to substitute the serial for each node during role execution.
 bstick = blinkstick.find_by_serial():
 
-# Grab only the first blinkstick, this is good for when you only have one blinkstick plugged into a node. Saves you from getting the serial number everytime. As I write this, I think it would be easier to just use this method.
+# Grab only the first blinkstick, this is good for when you only have one blinkstick plugged into a node. Saves you from getting the serial number everytime. As I write this, I think it would be easier to just use this method, but it might cause problems if I ever have more than one blinkstick per node.
 bstick = blinkstick.first():
 ```
