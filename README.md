@@ -44,7 +44,7 @@ ansible-playbook main.yaml -t get-info
 ansible-playbook main.yaml -t install
 
 # This roles uses the blinkstick python library to substitute the serial number from the ansible inventory and parse it as python. The script is then executed on the remote machines.
-ansible-playbook main.yaml -t cpu_usage
+ansible-playbook main.yaml -t cpu-usage
 
 # This roles uses the blinkstick python library to substitute the serial number from the ansible inventory and parse it as python. 
 # A python script will continuously monitor the CPU percentage of the nodes and update the color accordingly.
