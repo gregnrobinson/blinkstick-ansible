@@ -66,6 +66,8 @@ ansible-playbook main.yaml -t off
 ansible-playbook main.yaml -t aliases
 
   # The following aliases are added to either ~/.zprofile or ~/.bashrc....
+
+  # directory dynamically translated using jinja2
   export BLINK_PATH="{{ dir }}"
   export ANSIBLE_CONFIG="{{ dir }}/ansible.cfg"
 
