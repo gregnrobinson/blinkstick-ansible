@@ -40,3 +40,8 @@
   tags: ['party-pulse']
   loop:
     - yellow
+
+- name: Reset
+  poll: 0
+  raw: blinkstick --set-color {{ color }}
+  tags: ['party-reset']
