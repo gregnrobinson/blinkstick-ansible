@@ -3,7 +3,7 @@
   vars:
     color: "{{ base_config.color }}"
     brightness: "{{ base_config.brightness }}"
-  shell: blinkstick --set-color {{ color }} --brightness {{ brightness }}
+  shell: blinkstick --morph {{ color }} --brightness {{ brightness }}
   register: python
   become: true
 
