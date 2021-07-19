@@ -4,7 +4,7 @@
   gather_facts: no
   vars:
     base_config: 
-      color: blue
+      color: green
       brightness: 50
     python_packages:
       - blinkstick

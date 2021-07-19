@@ -1,6 +1,9 @@
 ---
 - name: Change brightness
-  shell: blinkstick --set-color {{ base_config.color }} --brightness {{ base_config.brightness }}
+  vars:
+    color: "{{ base_config.color }}"
+    brightness: "{{ base_config.brightness }}"
+  shell: blinkstick --set-color {{ color }} --brightness {{ brightness }}
   register: python
   become: true
 
