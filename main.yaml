@@ -17,5 +17,5 @@
     - { role: cpu_usage, tags: ["cpu-usage", "deploy"] }
     - { role: internet_status, tags: ["internet-status", "deploy"] }
     - { role: party, tags: ["party", "deploy"] }
-    - { role: base_config, tags: ["deploy", "base-config", "deploy"] }
+    - { role: base_config, tags: ["base-config"] }
     - { role: turnoff, tags: ["off"] }
