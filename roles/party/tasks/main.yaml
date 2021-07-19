@@ -19,26 +19,7 @@
 
 - name: execute
   poll: 0
-  raw: blinkstick --blink {{ item }}
-  tags: ['party']
-  loop:
-    - cyan
-    - yellow
-    - pink
-
-
-- name: execute
-  poll: 0
-  raw: blinkstick {{ item }}
-  tags: ['party']
-  loop:
-    - random
-    - random
-    - random
-
-- name: execute
-  poll: 0
-  raw: blinkstick --morph {{ item }}
+  raw: blinkstick --pulse {{ item }}
   tags: ['party']
   loop:
     - cyan
@@ -74,6 +55,15 @@
 
 - name: execute
   poll: 0
+  raw: blinkstick --pulse {{ item }}
+  tags: ['party']
+  loop:
+    - cyan
+    - yellow
+    - pink
+
+- name: execute
+  poll: 0
   raw: blinkstick --blink {{ item }}
   tags: ['party']
   loop:
@@ -101,6 +91,15 @@
 
 - name: execute
   poll: 0
+  raw: blinkstick --pulse {{ item }}
+  tags: ['party']
+  loop:
+    - cyan
+    - yellow
+    - pink
+
+- name: execute
+  poll: 0
   raw: blinkstick --blink {{ item }}
   tags: ['party']
   loop:
@@ -108,6 +107,74 @@
     - yellow
     - pink
 
-- name: reset
-  include_role:
-    name: base_config
+- name: execute
+  poll: 0
+  raw: blinkstick {{ item }}
+  tags: ['party']
+  loop:
+    - random
+    - random
+    - random
+
+- name: execute
+  poll: 0
+  raw: blinkstick --morph {{ item }}
+  tags: ['party']
+  loop:
+    - cyan
+    - yellow
+    - pink
+
+- name: execute
+  poll: 0
+  raw: blinkstick --pulse {{ item }}
+  tags: ['party']
+  loop:
+    - cyan
+    - yellow
+    - pink
+
+- name: execute
+  poll: 0
+  raw: blinkstick --blink {{ item }}
+  tags: ['party']
+  loop:
+    - cyan
+    - yellow
+    - pink
+
+- name: execute
+  poll: 0
+  raw: blinkstick {{ item }}
+  tags: ['party']
+  loop:
+    - random
+    - random
+    - random
+
+- name: execute
+  poll: 0
+  raw: blinkstick --morph {{ item }}
+  tags: ['party']
+  loop:
+    - cyan
+    - yellow
+    - pink
+
+- name: execute
+  poll: 0
+  raw: blinkstick --pulse {{ item }}
+  tags: ['party']
+  loop:
+    - cyan
+    - yellow
+    - pink
+
+- name: execute
+  poll: 0
+  raw: blinkstick --blink {{ item }}
+  tags: ['party']
+  loop:
+    - cyan
+    - yellow
+    - pink
