@@ -3,8 +3,9 @@
   become: true
   gather_facts: no
   vars:
-    color: green
-    brightness: 50
+    base_config: 
+      color: blue
+      brightness: 50
     python_packages:
       - blinkstick
       - psutil
@@ -13,8 +14,8 @@
   roles:
     - { role: get_info, tags: ["get-info"] }
     - { role: install, tags: ["install"] }
+    - { role: base_config, tags: ["base-config"] }
     - { role: cpu_usage, tags: ["cpu-usage"] }
     - { role: internet_status, tags: ["internet-status"] }
     - { role: party, tags: ["party"] }
-    - { role: brightness, tags: ["brightness"] }
     - { role: turnoff, tags: ["off"] }
