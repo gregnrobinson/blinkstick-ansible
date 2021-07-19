@@ -85,6 +85,9 @@ ansible-playbook main.yaml -t aliases
 
   # blinksticks - day mode
   alias blink-day='ansible-playbook ${BLINK_PATH}/main.yaml -i ${BLINK_PATH}/inventory/all.yaml -t base-config -e color=green -e brightness=50'
+
+# setup a day and night cron using aliases. aliases role is automatically run before daynight role tasks. Running the deploy tag also executes this role.
+ansible-playbook main.yaml -t daynight
 ```
 
 # Challenges
