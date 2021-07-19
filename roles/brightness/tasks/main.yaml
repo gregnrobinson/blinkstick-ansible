@@ -1,0 +1,9 @@
+---
+- name: Change brightness
+  shell: blinkstick --set-color {{ base_color}} --brightness {{ brightness }}
+  register: python
+  become: true
+
+- name: output
+  debug:
+    var: python.stdout_lines

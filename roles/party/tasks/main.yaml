@@ -1,117 +1,42 @@
 ---
-- name: Party
+- name: Party Blink
   poll: 0
-  raw: blinkstick {{ item }}
+  raw: blinkstick --blink {{ item }}
+  tags: ['party-blink']
   loop:
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-  tags: ['party']
-- name: Party2
+    - red
+    - green
+    - blue
+    - pink
+    - yellow
+    - cyan
+    - brown
+    - purple
+
+- name: Party Pulse
   poll: 0
-  raw: blinkstick {{ item }}
+  raw: blinkstick --pulse {{ item }}
+  tags: ['party-pulse']
   loop:
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-  tags: ['party']
-- name: Party3
+    - red
+
+- name: Party Pulse
   poll: 0
-  raw: blinkstick {{ item }}
+  raw: blinkstick --blink {{ item }}
+  tags: ['party-pulse']
   loop:
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-  tags: ['party']
-- name: party4
+    - red
+    - green
+    - blue
+    - pink
+    - yellow
+    - cyan
+    - brown
+    - purple
+
+- name: Party Pulse
   poll: 0
-  raw: blinkstick {{ item }}
+  raw: blinkstick --pulse {{ item }}
+  tags: ['party-pulse']
   loop:
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-     - random
-  tags: ['party']
+    - yellow
