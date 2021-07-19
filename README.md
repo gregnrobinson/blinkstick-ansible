@@ -8,7 +8,6 @@ Much of the inspiration is from https://github.com/arvydas/blinkstick-python/wik
 
 <div style="text-align:center">
   <img src="https://user-images.githubusercontent.com/26353407/126086407-b12d67a9-ed40-4127-b408-b52fa5732079.jpg" width="700" />
-</p>
 </div>
 
 
