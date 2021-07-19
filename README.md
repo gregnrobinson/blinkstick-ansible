@@ -6,7 +6,9 @@ Ansible seemed like the easiest path forward as I can make each tool as a role a
 
 Much of the inspiration is from https://github.com/arvydas/blinkstick-python/wiki where some of the python snippets worked as-is and some did not. Some of the snippets are from Python 2.7 and wouldn't work on Python 3.X. I am using At least Python 3.8 for everything python related.
 
-![IMG_7324](https://user-images.githubusercontent.com/26353407/126086407-b12d67a9-ed40-4127-b408-b52fa5732079.jpg)" width="270" />
+<p float="middle">
+  <img src="https://user-images.githubusercontent.com/26353407/126086407-b12d67a9-ed40-4127-b408-b52fa5732079.jpg" width="700" />
+</p>
 
 ## Instructions
 
