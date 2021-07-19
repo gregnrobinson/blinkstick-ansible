@@ -1,45 +1,45 @@
 ---
-- name: Party Blink
+- name: Party
   poll: 0
-  raw: blinkstick --blink {{ item }}
+  raw: blinkstick {{ item }}
   tags: ['party-blink']
   loop:
-    - red
-    - green
-    - blue
-    - pink
-    - yellow
-    - cyan
-    - brown
-    - purple
-
-- name: Party Pulse
-  poll: 0
-  raw: blinkstick --pulse {{ item }}
-  tags: ['party-pulse']
-  loop:
-    - white
-
-- name: Party Pulse
-  poll: 0
-  raw: blinkstick --blink {{ item }}
-  tags: ['party-pulse']
-  loop:
-    - red
-    - green
-    - blue
-    - pink
-    - yellow
-    - cyan
-    - brown
-    - purple
-
-- name: Party Pulse
-  poll: 0
-  raw: blinkstick --pulse {{ item }}
-  tags: ['party-pulse']
-  loop:
-    - yellow
+    - random
+    - random
+    - random
+    - random
+    - random
+    - random
+    - random
+    - random
+    - random
+    - random
+    - random
+    - random
+    - random
+    - random
+    - random
+    - random
+    - random
+    - random
+    - random
+    - random
+    - random
+    - random
+    - random
+    - random
+    - random
+    - random
+    - random
+    - random
+    - random
+    - random
+    - random
+    - random
+    - random
+    - random
+    - random
+    - random
 
 - name: Reset
   poll: 0
