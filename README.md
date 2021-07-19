@@ -1,10 +1,10 @@
 # Blinkstick Ansible Tools
 
-The reason for creating this repository was for me to have an easy way to operate 4 blinkstick nanos that I had bought for my Raspberry pi cluster. When you have multiple nodes with seperate blinksticks, having an abstraction layer on all four nodes makes it much easier to build tools that execute against all nodes, or a subset of nodes, or a subset of a subset of nodes and so on.
+The reason for creating this repository was for me to have an easy way to operate 4 Blinkstick Nanos that I had bought for my Raspberry pi cluster. When you have multiple nodes with separate Blinksticks, having an abstraction layer on all four nodes makes it much easier to build tools that execute against all nodes, or a subset of nodes, or a subset of a subset of nodes, and so on.
 
-Ansible seemed like the easiest path forward as I can make each tool as a role and use jinja templating for the python scripts that need to execute on the remote nodes. Using the python library directly, there is much more flexibility as to what can be achievied vs the cli tool that is provided also. When thinking about future development, this makes sense to be the standard method for all roles.
+Ansible seemed like the easiest path forward as I can make each tool as a role and use jinja templating for the python scripts that need to execute on the remote nodes. Using the python library directly, there is much more flexibility as to what can be achieved vs the cli tool that is provided also. When thinking about future development, this makes sense to be the standard method for all roles.
 
-Much of the inspiration is from https://github.com/arvydas/blinkstick-python/wiki where some of the python snippets worked as is and some did not. Some of the snippets are from Python 2.7 and wouldn't work on Python 3.X. I am using Atleast Python 3.8 for everything python related in this project.
+Much of the inspiration is from https://github.com/arvydas/blinkstick-python/wiki where some of the python snippets worked as-is and some did not. Some of the snippets are from Python 2.7 and wouldn't work on Python 3.X. I am using At least Python 3.8 for everything python related.
 
 <p float="middle">
   <img src="https://user-images.githubusercontent.com/26353407/126085349-a9253682-72b8-4ed7-8a85-bc4743aa422b.jpg" width="270" />
@@ -19,7 +19,7 @@ Get the following packages and materials on the machine executing Ansible. I am 
 - [python 3.X](https://www.python.org/downloads/)
 - [pip](https://pip.pypa.io/en/stable/installing/)
 
-Modify the inventory file with your node IP addresses. Ensure that you have passwordless ssh setup to all nodes.
+Modify the inventory file with your own IP addresses. Ensure that you have passwordless ssh setup to all nodes before proceeding with any Ansible configuration.
 
 Example entry looks like...
 ```yaml
@@ -28,7 +28,7 @@ node1: # name of the host. Arbitruary, it can be anything.
   serial: BS000001-3.0 # Run ansible-playbook main.yaml -t get-info to get this value for each node.
 ```
 
-If you want to find the blinkstick serial numbers after mofifying the IP addresses, run the `get-info` tage. This saves you from logging into to each one to view the serial.
+If you want to find the blinkstick serial numbers after mofifying the IP addresses, run the `get-info` tag. This saves you from logging into each node to find the serials.
 
 ## Available Commands
 
@@ -54,7 +54,7 @@ ansible-playbook main.yaml -t turnoff
 
 # Challenges
 
-The biggest though experiment was around how I would use Ansible to make sure when the python script executes that the serial number being used is the serial number of that particular instance. 
+The biggest thought experiment was around how I would use Ansible to make sure when the python script executes that the serial number being used is the serial number of that particular instance. 
 
 There are three main options when selecting a blinkstick in python.
 
