@@ -57,7 +57,7 @@ ansible-playbook main.yaml -t party
 ansible-playbook main.yaml -t base-config
 
 # Or... pass the brightness and color inline using extra vars
-nsible-playbook main.yaml -t base-config -e color=cyan -e brightness=50
+ansible-playbook main.yaml -t base-config -e color=cyan -e brightness=50
 
 # Turn all the Blinksticks off. (Useful for nighttime when you want to sleep. Use a cron to turn off automatically.)
 ansible-playbook main.yaml -t off
