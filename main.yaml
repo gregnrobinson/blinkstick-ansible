@@ -4,7 +4,7 @@
   gather_facts: no
   vars:
     base_color: green
-    brightness: 20
+    brightness: 20 # value between 0 and 100
     python_packages:
       - blinkstick
       - psutil
