@@ -1,5 +1,5 @@
 ---
-- name: Party
+- name: party
   poll: 0
   raw: blinkstick {{ item }}
   tags: ['party-blink']
@@ -41,7 +41,7 @@
     - random
     - random
 
-- name: Reset
+- name: reset
   poll: 0
   raw: blinkstick --set-color {{ color}} --brightness {{ brightness }}
   tags: ['party-reset']
