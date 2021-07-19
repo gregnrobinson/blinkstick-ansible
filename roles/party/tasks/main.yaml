@@ -43,5 +43,5 @@
 
 - name: Reset
   poll: 0
-  raw: blinkstick --set-color {{ color }}
+  raw: blinkstick --set-color {{ color}} --brightness {{ brightness }}
   tags: ['party-reset']
