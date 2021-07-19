@@ -22,36 +22,6 @@
     - random
     - random
     - random
-    - random
-    - random
-    - random
-    - random
-    - random
-    - random
-    - random
-    - random
-    - random
-    - random
-    - random
-    - random
-    - random
-    - random
-    - random
-    - random
-    - random
-    - random
-    - random
-    - random
-    - random
-    - random
-    - random
-    - random
-    - random
-    - random
-    - random
-    - random
-    - random
-    - random
 
 - name: execute
   poll: 0
@@ -59,16 +29,6 @@
   tags: ['party']
   loop:
     - cyan
-    - yellow
-    - pink
-
-- name: execute
-  poll: 0
-  raw: blinkstick --pulse {{ item }}
-  tags: ['party']
-  loop:
-    - cyan
-    - yellow
     - pink
 
 - name: execute
@@ -77,7 +37,6 @@
   tags: ['party']
   loop:
     - cyan
-    - yellow
     - pink
 
 - name: execute
@@ -88,6 +47,12 @@
     - random
     - random
     - random
+    - random
+    - random
+    - random
+    - random
+    - random
+    - random
 
 - name: execute
   poll: 0
@@ -95,16 +60,6 @@
   tags: ['party']
   loop:
     - cyan
-    - yellow
-    - pink
-
-- name: execute
-  poll: 0
-  raw: blinkstick --pulse {{ item }}
-  tags: ['party']
-  loop:
-    - cyan
-    - yellow
     - pink
 
 - name: execute
@@ -113,7 +68,6 @@
   tags: ['party']
   loop:
     - cyan
-    - yellow
     - pink
 
 - name: execute
@@ -124,33 +78,12 @@
     - random
     - random
     - random
-
-- name: execute
-  poll: 0
-  raw: blinkstick --morph {{ item }}
-  tags: ['party']
-  loop:
-    - cyan
-    - yellow
-    - pink
-
-- name: execute
-  poll: 0
-  raw: blinkstick --pulse {{ item }}
-  tags: ['party']
-  loop:
-    - cyan
-    - yellow
-    - pink
-
-- name: execute
-  poll: 0
-  raw: blinkstick --blink {{ item }}
-  tags: ['party']
-  loop:
-    - cyan
-    - yellow
-    - pink
+    - random
+    - random
+    - random
+    - random
+    - random
+    - random
 
 - name: reset
   include_role: 
