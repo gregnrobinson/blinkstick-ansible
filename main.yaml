@@ -12,10 +12,10 @@
       - feedparser
       - ansible
   roles:
-    - { role: get_info, tags: ["get-info"] }
-    - { role: install, tags: ["install"] }
-    - { role: base_config, tags: ["base-config"] }
-    - { role: cpu_usage, tags: ["cpu-usage"] }
-    - { role: internet_status, tags: ["internet-status"] }
-    - { role: party, tags: ["party"] }
+    - { role: get_info, tags: ["get-info", "deploy"] }
+    - { role: install, tags: ["install", "deploy"] }
+    - { role: base_config, tags: ["deploy", "base-config", "deploy"] }
+    - { role: cpu_usage, tags: ["cpu-usage", "deploy"] }
+    - { role: internet_status, tags: ["internet-status", "deploy"] }
+    - { role: party, tags: ["party", "deploy"] }
     - { role: turnoff, tags: ["off"] }
