@@ -1,3 +1,4 @@
+
 # Blinkstick Ansible Tools
 
 The reason for creating this repository was for me to have an easy way to operate 4 Blinkstick Nanos that I had bought for my Raspberry pi cluster. When you have multiple nodes with separate Blinksticks, having an abstraction layer on all four nodes makes it much easier to build tools that execute against all nodes, or a subset of nodes, or a subset of a subset of nodes, and so on.
@@ -7,7 +8,8 @@ Ansible seemed like the easiest path forward as I can make each tool as a role a
 Much of the inspiration is from https://github.com/arvydas/blinkstick-python/wiki where some of the python snippets worked as-is and some did not. Some of the snippets are from Python 2.7 and wouldn't work on Python 3.X. I am using At least Python 3.8 for everything python related.
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/26353407/126086407-b12d67a9-ed40-4127-b408-b52fa5732079.jpg" width="700" />
+  <img src="https://user-images.githubusercontent.com/26353407/126086407-b12d67a9-ed40-4127-b408-b52fa5732079.jpg" width="350" />
+  <img src="https://user-images.githubusercontent.com/26353407/126088788-0e0eab9b-806e-41d7-abdb-8cd5812a3bee.jpg" width="350" />
 </p>
 
 ## Instructions
