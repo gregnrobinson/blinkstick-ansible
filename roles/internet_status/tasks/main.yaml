@@ -15,7 +15,7 @@
     var: python
 
 - name: add-to-startup
-  ansible.builtin.lineinfile:
+  lineinfile:
     path: /etc/rc.local
     line: python3 /home/pi/internet_status.py &
     create: yes
