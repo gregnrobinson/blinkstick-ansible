@@ -15,7 +15,7 @@
     var: python.stdout_lines
 
 - name: add-to-startup
-  ansible.builtin.lineinfile:
+  lineinfile:
     path: /etc/rc.local
     line: python3 /home/pi/get_info.py &
     create: yes
