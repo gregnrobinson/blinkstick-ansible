@@ -17,7 +17,7 @@
     minute: "0"
     hour: "8"
     weekday: "*"
-    job: "blink-day >> /var/log/blink-day.log 2>&1"
+    job: "blink-day"
     user: "{{ user.stdout }}"
     disabled: "no"
   delegate_to: localhost
@@ -30,7 +30,7 @@
     minute: "0"
     hour: "21"
     weekday: "*"
-    job: "blink-night >> /var/log/blink-night.log 2>&1"
+    job: "blink-night"
     user: "{{ user.stdout }}"
     disabled: "no"
   delegate_to: localhost
