@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # add ansible paths for project
 export BLINK_PATH="{{ BLINK_PATH }}"
 export ANSIBLE_CONFIG="{{ ANSIBLE_CONFIG }}"
@@ -16,3 +18,5 @@ alias blink-night='ansible-playbook ${BLINK_PATH}/main.yaml -i ${BLINK_PATH}/inv
 
 # blinksticks - day mode
 alias blink-day='ansible-playbook ${BLINK_PATH}/main.yaml -i ${BLINK_PATH}/inventory/all.yaml -t base-config -e color=green -e brightness=70'
+
+shopt -s expand_aliases

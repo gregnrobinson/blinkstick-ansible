@@ -67,14 +67,3 @@
   when: bashrc.stat.exists
   delegate_to: localhost
   run_once: true
-
-- name: expand aliases
-  shell: shopt -s expand_aliases
-  register: output
-  delegate_to: localhost
-  run_once: true
-
-- name: source aliases
-  shell: source ~/.bashrc
-  delegate_to: localhost
-  run_once: true
