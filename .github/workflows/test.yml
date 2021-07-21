@@ -19,7 +19,7 @@ jobs:
           peer_ip: ${{ secrets.PEER_IP }}
           ssh_public_key: ${{ secrets.SSH_PUBLIC_KEY }}
           peer_port: ${{ secrets.PEER_PORT }}
-          github_ip: ${{ secrets.GITHUB_IP }}
+          github_ip: ${{ secrets.PRIVATE_IP }}
           ssh_connection_timeout: '300'
           session_timeout: 3600
 
