@@ -20,20 +20,20 @@
       debug:
         var: user.stdout_lines
 
-    #- name: generate
-    #  vars:
-    #    ANSIBLE_CONFIG: "{{ dir.stdout }}/ansible.cfg"
-    #    BLINK_PATH: "{{ dir.stdout }}"
-    #  blockinfile:
-    #    block: '{{ lookup("template", "{{ dir.stdout }}/crons/templates/{{ item }}.j2") }}'
-    #    path: "{{ dir.stdout }}/crons/jobs/{{ item }}.sh"
-    #    backup: no
-    #    create: yes
-    #  loop: "{{ crons.keys() | list }}"
-
-    #- name: chmod+x
-    #  file: dest=~/crons/{{ item }}.sh mode=a+x
-    #  loop: "{{ crons.keys() | list }}"
+#    - name: generate
+#      vars:
+#        ANSIBLE_CONFIG: "{{ dir.stdout }}/ansible.cfg"
+#        BLINK_PATH: "{{ dir.stdout }}"
+#      blockinfile:
+#        block: '{{ lookup("template", "{{ dir.stdout }}/crons/templates/{{ item }}.j2") }}'
+#        path: "{{ dir.stdout }}/crons/jobs/{{ item }}.sh"
+#        backup: no
+#        create: yes
+#      loop: "{{ crons.keys() | list }}"
+    
+    - name: chmod+x
+      file: dest=~/crons/{{ item }}.sh mode=a+x
+      loop: "{{ crons.keys() | list }}"
 
     - name: execute
       cron:
@@ -41,11 +41,16 @@
         minute:   "{{ crons[item]['minute'] }}"
         hour:     "{{ crons[item]['hour'] }}"
         weekday:  "{{ crons[item]['weekday'] }}"
-        job:      "/bin/bash {{ user.stdout }} {{ crons[item]['job'] }}"
+        job:      "{{ crons[item]['job'] }}"
         user:     "{{ user.stdout }}"
         disabled: "{{ crons[item]['disabled'] }}"
       with_items: "{{ crons.keys() | list }}"
       register: output
+
+    - name: cronfile
+      cron:
+        name: "cronfile"
+        cron_file: cron/jobs.j2
 
     - name: verify
       shell: crontab -l
