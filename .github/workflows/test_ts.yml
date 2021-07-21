@@ -30,6 +30,7 @@ jobs:
           hosts=("kube1" "kube2" "kube3" "kube4")
           mkdir -p ~/.ssh
           for i in ${hosts[@]};
+          do
             IP="$(tailscale ip -6 ${i})"
             ssh-keyscan ${IP} >> ~/.ssh/known_hosts
             printf "%s" "$SSH_KEY" > ~/.ssh/key
