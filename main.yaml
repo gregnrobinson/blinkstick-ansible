@@ -3,7 +3,6 @@
   become: true
   gather_facts: no
   vars:
-    cron: true
     base_config: 
       color: green
       brightness: 50
@@ -21,10 +20,4 @@
     - { role: rave,            tags: ["rave"] }
     - { role: base_config,     tags: ["base-config"] }
     - { role: turnoff,         tags: ["off"] }
-
-- name: set crons
-  vars:
-    cron: true
-  import_playbook: cron.yaml
-  tags: cron
       
