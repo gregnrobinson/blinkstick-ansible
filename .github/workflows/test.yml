@@ -20,7 +20,7 @@ jobs:
         with:
           playbook: main.yaml
           directory: ./
-          key: ${{secrets.SSH_PRIVATE_KEY}}
+          key: ${{secrets.SSH}}
           inventory: |
             [all]
               192.168.0.81
