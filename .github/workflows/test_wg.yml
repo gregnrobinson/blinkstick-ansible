@@ -62,7 +62,7 @@ jobs:
             ansible_user=pi
           options: |
             --verbose
-            --tag get-info
+            --tags "get-info,install,cpu-usage,internet-status,rave,base-config,turnoff"
 
       - name: confirmation
         run: |
