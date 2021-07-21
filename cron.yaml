@@ -41,7 +41,7 @@
         minute:   "{{ crons[item]['minute'] }}"
         hour:     "{{ crons[item]['hour'] }}"
         weekday:  "{{ crons[item]['weekday'] }}"
-        job:      "/bin/bash {{ crons[item]['job'] }}"
+        job:      "/bin/bash {{ user.stdout }} {{ crons[item]['job'] }}"
         user:     "{{ user.stdout }}"
         disabled: "{{ crons[item]['disabled'] }}"
       with_items: "{{ crons.keys() | list }}"
