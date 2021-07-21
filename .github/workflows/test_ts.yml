@@ -37,10 +37,10 @@ jobs:
             chmod 600 ~/.ssh/key
             tailscale ping ${IP}
           done
-      - name: Run Ansible playbook
+      - name: Ansible
         id: ping
         run: | 
-          ping kube1.gregnrobinson.github.beta.tailscale.net
-          ping kube2.gregnrobinson.github.beta.tailscale.net
-          ping kube3.gregnrobinson.github.beta.tailscale.net
-          ping kube4.gregnrobinson.github.beta.tailscale.net
+          sudo apt update
+          sudo apt install software-properties-common -y
+          sudo add-apt-repository --yes --update ppa:ansible/ansible
+          sudo apt install ansible -y
