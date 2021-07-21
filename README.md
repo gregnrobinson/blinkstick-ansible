@@ -99,13 +99,7 @@ ansible-playbook main.yaml -t daynight
 
 ## Cron Schedules
 
-Add lines to the `vars.crons` section to create cron jobs on the machine the executes the Ansible playbook.  
-
-To apply cron schedules from the root of the repository...
-
-```bash
-ansible-playbook cron.yaml
-```
+Add lines to the `vars.crons` section to create cron jobs on the machine the executes the Ansible playbook.
 
 ```yaml
 vars:
@@ -113,4 +107,10 @@ vars:
     day:   { minute: '0', hour: '8',  weekday: '*',   disabled: 'no', tag: 'base-config', brightness: '70', color: 'green' }
     night: { minute: '0', hour: '21', weekday: '*',   disabled: 'no', tag: 'base-config', brightness: '20', color: 'cyan' }
     rave:  { minute: '0', hour: '17', weekday: 'FRI', disabled: 'no', tag: 'rave',        brightness: '80', color: 'cyan' }
+```
+
+To apply cron schedules from the root of the repository...
+
+```bash
+ansible-playbook cron.yaml
 ```
