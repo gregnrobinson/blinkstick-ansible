@@ -7,7 +7,7 @@
       night: { minute: '0', hour: '21', weekday: '*', disabled: 'no', job: 'blink-night'}
       rave:  { minute: '0', hour: '17', weekday: '*', disabled: 'no', job: 'blink-rave'}
   tasks:
-    - name: cron - env
+    - name: aliases
       include_role:
         name: aliases
       run_once: true
@@ -20,17 +20,32 @@
       debug:
         var: user.stdout_lines
 
+    #- name: generate
+    #  vars:
+    #    ANSIBLE_CONFIG: "{{ dir.stdout }}/ansible.cfg"
+    #    BLINK_PATH: "{{ dir.stdout }}"
+    #  blockinfile:
+    #    block: '{{ lookup("template", "{{ dir.stdout }}/crons/templates/{{ item }}.j2") }}'
+    #    path: "{{ dir.stdout }}/crons/jobs/{{ item }}.sh"
+    #    backup: no
+    #    create: yes
+    #  loop: "{{ crons.keys() | list }}"
+
+    #- name: chmod+x
+    #  file: dest=~/crons/{{ item }}.sh mode=a+x
+    #  loop: "{{ crons.keys() | list }}"
+
     - name: execute
       cron:
         name:     "{{ item }}"
         minute:   "{{ crons[item]['minute'] }}"
         hour:     "{{ crons[item]['hour'] }}"
         weekday:  "{{ crons[item]['weekday'] }}"
-        job:      "{{ crons[item]['job'] }}"
+        job:      "/bin/bash {{ crons[item]['job'] }}"
         user:     "{{ user.stdout }}"
         disabled: "{{ crons[item]['disabled'] }}"
-      register: output
       with_items: "{{ crons.keys() | list }}"
+      register: output
 
     - name: verify
       shell: crontab -l
