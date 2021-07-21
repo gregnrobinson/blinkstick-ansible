@@ -18,7 +18,7 @@ jobs:
       - name: Install Wireguard
         run: sudo apt-get install wireguard
 
-      - name: Create wireguard tunnel configuration
+      - name: Create Wireguard Tunnel Configuration
         run: |
           sed -i -e "s@{{WIREGUARD_PRIVATE_KEY}}@${{ secrets.WIREGUARD_PRIVATE_KEY }}@" $GITHUB_WORKSPACE/.github/workflows/tunnel.conf
           sed -i -e "s@{{WIREGUARD_SERVER_PUBLIC_KEY}}@${{ secrets.WIREGUARD_SERVER_PUBLIC_KEY }}@" $GITHUB_WORKSPACE/.github/workflows/tunnel.conf
