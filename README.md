@@ -116,7 +116,7 @@ bstick = blinkstick.first():
 
 ## Cron Schedules
 
-There is a `cron.yaml` file at the root of the repository that takes the vars section and creates cron jobs with whatever is configured under the crons variable. Add lines to the `vars.crons` section to create cron jobs on the machine the executes the Ansible playbook.  
+Add lines to the `vars.crons` section to create cron jobs on the machine the executes the Ansible playbook.  
 
 To apply cron schedules from the root of the repository...
 
