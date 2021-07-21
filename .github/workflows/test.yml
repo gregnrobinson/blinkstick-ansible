@@ -16,17 +16,11 @@ jobs:
       - uses: actions/checkout@v2
       - uses: omahn/wireguard-ssh-github-action@v1.1
         with:
-          # Required. IP address of your WireGuard peer.
-          peer_ip: ''
-          # Required. SSH public key as a string.
-          ssh_public_key: ''
-          # Port of WireGuard peer.
-          peer_port: '51820'
-          # Private IP of GitHub peer.
-          github_ip: '192.168.192.1'
-          # Seconds to wait for SSH connection.
+          peer_ip: ${{ secrets.PEER_IP }}
+          ssh_public_key: ${{ secrets.SSH_PUBLIC_KEY }}
+          peer_port: ${{ secrets.PEER_PORT }}
+          github_ip: ${{ secrets.GITHUB_IP }}
           ssh_connection_timeout: '300'
-          # Seconds to timeout SSH session.
           session_timeout: 3600
 
       - name: Run Ansible playbook
