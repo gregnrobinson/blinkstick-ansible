@@ -1,6 +1,6 @@
 # Blinkstick Ansible
 
-![deploy workflow](https://github.com/gregnrobinson/blinkstick-ansible/actions/workflows/ansible-test.yml/badge.svg) [![wakatime](https://wakatime.com/badge/github/gregnrobinson/blinkstick-ansible.svg)](https://wakatime.com/badge/github/gregnrobinson/blinkstick-ansible) [![Known Vulnerabilities](https://snyk.io/test/github/gregnrobinson/blinkstick-ansible/badge.svg)]
+![deploy workflow](https://github.com/gregnrobinson/blinkstick-ansible/actions/workflows/ansible-test.yml/badge.svg) [![wakatime](https://wakatime.com/badge/github/gregnrobinson/blinkstick-ansible.svg)](https://wakatime.com/badge/github/gregnrobinson/blinkstick-ansible)
 
 Much of the inspiration is from https://github.com/arvydas/blinkstick-python/wiki where some of the python snippets worked as-is and some did not. Some of the snippets are from Python 2.7 and wouldn't work on Python 3.X. I am using At least Python 3.8 for everything python related.
 
