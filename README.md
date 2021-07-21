@@ -97,7 +97,7 @@ ansible-playbook main.yaml -t daynight
 
 ## Cron Schedules
 
-Add lines to the `vars.crons` section to create cron jobs on the machine the executes the Ansible playbook.
+Add lines to the `vars.crons` section of `cron.yaml` to create cron jobs on the machine the executes the Ansible playbook.
 
 ```yaml
 vars:
