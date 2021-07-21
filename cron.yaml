@@ -34,18 +34,18 @@
 
     - name: set crons
       cron:
-        name: "{{ item.name }}"
-        minute: "{{ item.minute }}"
-        hour: "{{ item.hour }}"
-        weekday: "{{ item.weekday }}"
-        job: ~/crons/{{ item.name }}.sh
-        user: "{{ user.stdout }}"
+        name:     "{{ item.name }}"
+        minute:   "{{ item.minute }}"
+        hour:     "{{ item.hour }}"
+        weekday:  "{{ item.weekday }}"
+        job:      ~/crons/{{ item.name }}.sh
+        user:     "{{ user.stdout }}"
         disabled: "{{ item.disabled }}"
       register: output
       loop:
-        - { name: 'day', minute: '0', hour: '8', weekday: '*', disabled: 'no' }
-        - { name: 'night', minute: '0', hour: '23', weekday: '*', disabled: 'no' }
-        - { name: 'rave', minute: '0', hour: '17', weekday: 'FRI', disabled: 'no' }
+        - { name: 'day',   minute: '0', hour: '8',  weekday: '*',   disabled: 'no' }
+        - { name: 'night', minute: '0', hour: '23', weekday: '*',   disabled: 'no' }
+        - { name: 'rave',  minute: '0', hour: '17', weekday: 'FRI', disabled: 'no' }
 
     # VERIFY/OUTPUT
     - name: cron - verify
