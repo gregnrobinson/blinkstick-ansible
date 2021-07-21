@@ -1,5 +1,7 @@
 # Blinkstick Ansible
 
+![example workflow](https://github.com/gregnrobinson/blinkstick-ansible/actions/workflows/test_wg.yml/badge.svg)
+
 Much of the inspiration is from https://github.com/arvydas/blinkstick-python/wiki where some of the python snippets worked as-is and some did not. Some of the snippets are from Python 2.7 and wouldn't work on Python 3.X. I am using At least Python 3.8 for everything python related.
 
 The reason for creating this repository was for me to have an easy way to operate 4 Blinkstick Nanos that I had bought for my Raspberry pi cluster. When you have multiple nodes with separate Blinksticks, having an abstraction layer on all four nodes allows for complete control of of all blinksticks using only single commands. This repository makes it possible to create patterns and sequences using blinksticks no matter where they are plugged in.
