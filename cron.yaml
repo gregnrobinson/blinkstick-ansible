@@ -7,7 +7,7 @@
       night: { minute: '0', hour: '21', weekday: '*', disabled: 'no', job: 'blink-night'}
       rave:  { minute: '0', hour: '17', weekday: '*', disabled: 'no', job: 'blink-rave'}
   tasks:
-    - name: cron - env
+    - name: aliases
       include_role:
         name: aliases
       run_once: true
@@ -41,13 +41,11 @@
         minute:   "{{ crons[item]['minute'] }}"
         hour:     "{{ crons[item]['hour'] }}"
         weekday:  "{{ crons[item]['weekday'] }}"
-        job:      "{{ crons[item]['job'] }}"
+        job:      "/bin/bash {{ crons[item]['job'] }}"
         user:     "{{ user.stdout }}"
         disabled: "{{ crons[item]['disabled'] }}"
       with_items: "{{ crons.keys() | list }}"
       register: output
-      environment:
-        SHELL: /bin/bash
 
     - name: verify
       shell: crontab -l
