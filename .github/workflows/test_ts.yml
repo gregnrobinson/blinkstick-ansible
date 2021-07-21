@@ -20,6 +20,7 @@ jobs:
         uses: tailscale/tailscale-deploy-github@main
         with:
           authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
+          version: 1.10.2
 
       - name: Prepare ssh key for remote login
         run: |
