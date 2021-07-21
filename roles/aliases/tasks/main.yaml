@@ -54,3 +54,27 @@
   when: bashrc.stat.exists
   delegate_to: localhost
   run_once: true
+
+- name: append aliases to bashrc
+  vars:
+    ANSIBLE_CONFIG: "{{ dir.stdout }}/ansible.cfg"
+    BLINK_PATH: "{{ dir.stdout }}"
+  blockinfile:
+    block: '{{ lookup("template", "aliases.j2") }}'
+    path: ~/.bashrc
+    backup: yes
+  become: false
+  when: bashrc.stat.exists
+  delegate_to: localhost
+  run_once: true
+
+- name: expand aliases
+  shell: shopt -s expand_aliases
+  register: output
+  delegate_to: localhost
+  run_once: true
+
+- name: source aliases
+  shell: source ~/.bashrc
+  delegate_to: localhost
+  run_once: true
