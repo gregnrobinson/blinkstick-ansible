@@ -3,7 +3,7 @@
   gather_facts: no
   vars:
     crons:
-      day:   { minute: '*', hour: '*',  weekday: '*', disabled: 'no', brightness: '80', color: 'green'}
+      day:   { minute: '0', hour: '8',  weekday: '*', disabled: 'no', brightness: '70', color: 'green'}
       night: { minute: '0', hour: '21', weekday: '*', disabled: 'no', brightness: '30', color: 'cyan'}
   tasks:
     - name: aliases
