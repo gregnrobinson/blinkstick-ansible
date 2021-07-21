@@ -1,10 +1,8 @@
 # Blinkstick Ansible
 
-The reason for creating this repository was for me to have an easy way to operate 4 Blinkstick Nanos that I had bought for my Raspberry pi cluster. When you have multiple nodes with separate Blinksticks, having an abstraction layer on all four nodes makes it much easier to build tools that execute against all nodes, or a subset of nodes, or a subset of a subset of nodes, and so on.
-
-Ansible seemed like the easiest path forward as I can make each tool as a role and use jinja templating for the python scripts that need to execute on the remote nodes. Using the python library directly, there is much more flexibility as to what can be achieved vs the cli tool that is provided also. When thinking about future development and ease of use, Ansible strikes as a good balance.
-
 Much of the inspiration is from https://github.com/arvydas/blinkstick-python/wiki where some of the python snippets worked as-is and some did not. Some of the snippets are from Python 2.7 and wouldn't work on Python 3.X. I am using At least Python 3.8 for everything python related.
+
+The reason for creating this repository was for me to have an easy way to operate 4 Blinkstick Nanos that I had bought for my Raspberry pi cluster. When you have multiple nodes with separate Blinksticks, having an abstraction layer on all four nodes allows for complete control of of all blinksticks using only single commands. This repository makes it possible to create patterns and sequences using blinksticks no matter where they are plugged in.
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/26353407/126090043-1788cdf8-8f37-4aba-a160-d526d99923f5.jpg" width="415" />
