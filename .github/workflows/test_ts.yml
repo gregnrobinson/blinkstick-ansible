@@ -22,11 +22,19 @@ jobs:
           authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
           version: 1.10.2
 
-      - name: Prepare ssh key for remote login
+      - name: Add SSH key
+        id: ssh
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
         run: |
-          mkdir ~/.ssh/
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
+          hosts=("kube1" "kube2" "kube3" "kube4")
+          mkdir -p ~/.ssh
+          for i in hosts
+            IP="$(tailscale ip -6 ${i})"
+            ssh-keyscan ${IP} >> ~/.ssh/known_hosts
+            printf "%s" "$SSH_KEY" > ~/.ssh/key
+            chmod 600 ~/.ssh/key
+          done
       - name: Run Ansible playbook
         uses: dawidd6/action-ansible-playbook@v2.4.0
         with:
