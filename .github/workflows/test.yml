@@ -31,6 +31,6 @@ jobs:
             --verbose
             --tag deploy
 
-      - name: Run a multi-line script
+      - name: confirmation
         run: |
           echo "Tests completed successfully..."
