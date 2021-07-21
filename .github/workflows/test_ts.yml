@@ -44,10 +44,10 @@ jobs:
           key: ${{secrets.SSH}}
           inventory: |
             [all]
-            192.168.0.81
-            192.168.0.82
-            192.168.0.83
-            192.168.0.84
+              kube1
+              kube2
+              kube3
+              kube4
 
             [all:vars]
             ansible_user=pi
