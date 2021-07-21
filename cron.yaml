@@ -3,9 +3,9 @@
   gather_facts: no
   vars:
     crons:
-      day:   { minute: '*', hour: '*',  weekday: '*', disabled: 'no', job: 'blink-night'}
-      night: { minute: '0', hour: '21', weekday: '*', disabled: 'no', job: 'blink-night'}
-      rave:  { minute: '0', hour: '17', weekday: '*', disabled: 'no', job: 'blink-rave'}
+      day:   { minute: '*', hour: '*',  weekday: '*', disabled: 'no'}
+      night: { minute: '0', hour: '21', weekday: '*', disabled: 'no'}
+      rave:  { minute: '0', hour: '17', weekday: '*', disabled: 'no'}
   tasks:
     - name: aliases
       include_role:
@@ -20,6 +20,13 @@
       debug:
         var: user.stdout_lines
 
+    - name: current directory
+      shell: pwd
+      become: false
+      register: dir
+      delegate_to: localhost
+      run_once: true
+
 #    - name: generate
 #      vars:
 #        ANSIBLE_CONFIG: "{{ dir.stdout }}/ansible.cfg"
@@ -31,26 +38,24 @@
 #        create: yes
 #      loop: "{{ crons.keys() | list }}"
     
-    - name: chmod+x
-      file: dest=~/crons/{{ item }}.sh mode=a+x
-      loop: "{{ crons.keys() | list }}"
+#    - name: chmod+x
+#      file: dest=~/crons/{{ item }}.sh mode=a+x
+#      loop: "{{ crons.keys() | list }}"
 
     - name: execute
+      vars:
+        ANSIBLE_CONFIG: "{{ dir.stdout }}/ansible.cfg"
+        BLINK_PATH: "{{ dir.stdout }}"
       cron:
         name:     "{{ item }}"
         minute:   "{{ crons[item]['minute'] }}"
         hour:     "{{ crons[item]['hour'] }}"
         weekday:  "{{ crons[item]['weekday'] }}"
-        job:      "{{ crons[item]['job'] }}"
+        job:      "ansible-playbook {{ BLINK_PATH }}/main.yaml -i {{ BLINK_PATH }}/inventory/all.yaml -t blink-{{ item }}"
         user:     "{{ user.stdout }}"
         disabled: "{{ crons[item]['disabled'] }}"
       with_items: "{{ crons.keys() | list }}"
       register: output
-
-    - name: cronfile
-      cron:
-        name: "cronfile"
-        cron_file: cron/jobs.j2
 
     - name: verify
       shell: crontab -l
