@@ -1,0 +1,56 @@
+- hosts: localhost
+  become: true
+  gather_facts: no
+  vars:
+    base_config: 
+      color: green
+      brightness: 50
+  tasks:
+    - name: cron - env
+      include_role:
+        name: aliases
+      run_once: true
+    
+    - name: cron - get user
+      shell: whoami
+      register: user
+      become: false
+
+    # DAYNIGHT
+    - name: generate crons
+      vars:
+        ANSIBLE_CONFIG: "{{ dir.stdout }}/ansible.cfg"
+        BLINK_PATH: "{{ dir.stdout }}"
+      blockinfile:
+        block: '{{ lookup("template", "./crons/{{ item }}.j2") }}'
+        path: ~/crons/{{ item }}.sh
+        backup: no
+        create: yes
+      become: false
+      loop:
+        - day
+        - night
+
+    - name: set crons
+      cron:
+        name: "{{ item.name }}"
+        minute: "{{ item.minute }}"
+        hour: "{{ item.hour }}"
+        weekday: "{{ item.weekday }}"
+        job: ~/crons/{{ item.name }}.sh
+        user: "{{ user.stdout }}"
+        disabled: "{{ item.disabled }}"
+      register: output
+      loop:
+        - { name: 'day', minute: '0', hour: '8', weekday: '*', disabled: 'no' }
+        - { name: 'night', minute: '0', hour: '23', weekday: '*', disabled: 'no' }
+
+    # VERIFY/OUTPUT
+    - name: cron - verify
+      shell: crontab -l
+      become: false
+      register: output
+
+    - name: output
+      debug:
+        var: output.stdout_lines

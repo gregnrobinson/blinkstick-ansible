@@ -3,6 +3,7 @@
   become: true
   gather_facts: no
   vars:
+    cron: true
     base_config: 
       color: green
       brightness: 50
@@ -17,7 +18,13 @@
     - { role: cpu_usage,       tags: ["cpu-usage", "deploy"] }
     - { role: internet_status, tags: ["internet-status", "deploy"] }
     - { role: aliases,         tags: ["aliases", "deploy"] }
-    - { role: daynight,        tags: ["daynight", "deploy"] }
     - { role: rave,            tags: ["rave"] }
     - { role: base_config,     tags: ["base-config"] }
     - { role: turnoff,         tags: ["off"] }
+
+- name: set crons
+  vars:
+    cron: true
+  import_playbook: cron.yaml
+  tags: cron
+      
