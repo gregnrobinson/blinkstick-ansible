@@ -38,21 +38,9 @@ jobs:
             tailscale ping ${IP}
           done
       - name: Run Ansible playbook
-        uses: dawidd6/action-ansible-playbook@v2.4.0
-        with:
-          playbook: main.yaml
-          directory: ./
-          key: ${{secrets.SSH}}
-          inventory: |
-            [all]
-              100.100.205.35
-              100.73.57.125
-              100.97.134.97
-              100.98.26.115
-
-            [all:vars]
-            ansible_user=pi
-            ansible_ssh_private_key_file=~/.ssh/id_rsa
-          options: |
-            --verbose
-            --tag get-info
+        id: ping
+        run: | 
+          ping kube1.gregnrobinson.github.beta.tailscale.net
+          ping kube2.gregnrobinson.github.beta.tailscale.net
+          ping kube3.gregnrobinson.github.beta.tailscale.net
+          ping kube4.gregnrobinson.github.beta.tailscale.net
