@@ -14,14 +14,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: omahn/wireguard-ssh-github-action@v1.1
-        with:
-          peer_ip: ${{ secrets.PEER_IP }}
-          ssh_public_key: ${{ secrets.SSH_PUBLIC_KEY }}
-          peer_port: ${{ secrets.PEER_PORT }}
-          github_ip: ${{ secrets.PRIVATE_IP }}
-          ssh_connection_timeout: '300'
-          session_timeout: 3600
+      
+      - name: Install wireguard
+        run: sudo apt-get install wireguard
+
+      - name: Create wireguard tunnel configuration
+        run: |
+          sed -i -e "s@{{CTX_WIREGUARD_PRIVATE_KEY}}@${{ secrets.SSH_PRIVATE_KEY }}@" $GITHUB_WORKSPACE/tunnel.conf
+          sed -i -e "s@{{CTX_WIREGUARD_SERVER_PUBLIC_KEY}}@${{ secrets.SSH_PUBLIC_KEY }}@" $GITHUB_WORKSPACE/tunnel.conf
+          sed -i -e "s@{{CTX_WIREGUARD_PRESHARED_KEY}}@${{ secrets.CTX_WIREGUARD_PRESHARED_KEY }}@" $GITHUB_WORKSPACE/tunnel.conf
+          sed -i -e "s@{{CTX_WIREGUARD_SERVER_ENDPOINT}}@${{ secrets.PEER_IP }}@" $GITHUB_WORKSPACE/tunnel.conf
+          sudo cp $GITHUB_WORKSPACE/tunnel.conf /etc/wireguard/
+      - name: Prepare ssh key for remote login
+        run: |
+          mkdir ~/.ssh/
+          echo "${{ secrets.CTX_SERVER_DEPLOY_SECRET }}" | base64 -d > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+      - name: Deploy the package
+        run: |
+          wg-quick up tunnel
 
       - name: Run Ansible playbook
         uses: dawidd6/action-ansible-playbook@v2.4.0
