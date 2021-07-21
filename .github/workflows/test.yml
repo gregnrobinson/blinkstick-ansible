@@ -20,10 +20,10 @@ jobs:
 
       - name: Create wireguard tunnel configuration
         run: |
-          sed -i -e "s@{{CTX_WIREGUARD_PRIVATE_KEY}}@${{ secrets.SSH_PRIVATE_KEY }}@" $GITHUB_WORKSPACE/tunnel.conf
-          sed -i -e "s@{{CTX_WIREGUARD_SERVER_PUBLIC_KEY}}@${{ secrets.SSH_PUBLIC_KEY }}@" $GITHUB_WORKSPACE/tunnel.conf
-          sed -i -e "s@{{CTX_WIREGUARD_PRESHARED_KEY}}@${{ secrets.CTX_WIREGUARD_PRESHARED_KEY }}@" $GITHUB_WORKSPACE/tunnel.conf
-          sed -i -e "s@{{CTX_WIREGUARD_SERVER_ENDPOINT}}@${{ secrets.PEER_IP }}@" $GITHUB_WORKSPACE/tunnel.conf
+          sed -i -e "s@{{WIREGUARD_PRIVATE_KEY}}@${{ secrets.WIREGUARD_PRIVATE_KEY }}@" $GITHUB_WORKSPACE/tunnel.conf
+          sed -i -e "s@{{WIREGUARD_SERVER_PUBLIC_KEY}}@${{ secrets.WIREGUARD_SERVER_PUBLIC_KEY }}@" $GITHUB_WORKSPACE/tunnel.conf
+          sed -i -e "s@{{WIREGUARD_PRIVATE_IP}}@${{ secrets.WIREGUARD_PRIVATE_IP }}@" $GITHUB_WORKSPACE/tunnel.conf
+          sed -i -e "s@{{WIREGUARD_SERVER_ENDPOINT}}@${{ secrets.WIREGUARD_SERVER_ENDPOINT }}@" $GITHUB_WORKSPACE/tunnel.conf
           sudo cp $GITHUB_WORKSPACE/tunnel.conf /etc/wireguard/
       - name: Prepare ssh key for remote login
         run: |
