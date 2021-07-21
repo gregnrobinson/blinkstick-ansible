@@ -34,7 +34,7 @@
     ANSIBLE_CONFIG: "{{ dir.stdout }}/ansible.cfg"
     BLINK_PATH: "{{ dir.stdout }}"
   blockinfile:
-    block: '{{ lookup("template", "aliases.j2") }}'
+    block: '{{ lookup("template", "aliases.sh") }}'
     path: ~/.zprofile
     backup: yes
   become: false
@@ -47,7 +47,7 @@
     ANSIBLE_CONFIG: "{{ dir.stdout }}/ansible.cfg"
     BLINK_PATH: "{{ dir.stdout }}"
   blockinfile:
-    block: '{{ lookup("template", "aliases.j2") }}'
+    block: '{{ lookup("template", "aliases.sh") }}'
     path: ~/.bashrc
     backup: yes
   become: false

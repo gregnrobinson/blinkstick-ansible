@@ -1,7 +1,7 @@
 ---
 - name: generate
   template:
-    src: off.py.j2
+    src: off.py
     dest: /home/pi/off.py
   become: true
 

@@ -1,7 +1,7 @@
 ---
 - name: generate
   template:
-    src: cpu_usage.py.j2
+    src: cpu_usage.py
     dest: /home/pi/cpu_usage.py
   become: true
 

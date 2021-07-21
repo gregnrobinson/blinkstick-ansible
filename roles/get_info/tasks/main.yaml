@@ -1,7 +1,7 @@
 ---
 - name: generate
   template:
-    src: get_info.py.j2
+    src: get_info.py
     dest: /home/pi/get_info.py
   become: true
 
