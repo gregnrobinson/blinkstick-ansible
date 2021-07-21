@@ -18,7 +18,7 @@ Get the following packages and materials on the machine executing Ansible. I am 
 - [python 3.X](https://www.python.org/downloads/)
 - [pip](https://pip.pypa.io/en/stable/installing/)
 
-Modify `inventory/all.yaml` your own IP addresses. Ensure that you have passwordless ssh setup to all nodes before proceeding with any Ansible configuration.
+Modify `inventory/all.yaml` with your own IP addresses and blinkstick serial numbers. Ensure that you have passwordless ssh setup to all nodes before proceeding with any Ansible configuration.
 
 Example entry looks like...
 ```yaml
