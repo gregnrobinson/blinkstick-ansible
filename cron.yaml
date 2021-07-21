@@ -50,7 +50,7 @@
         minute:   "{{ crons[item]['minute'] }}"
         hour:     "{{ crons[item]['hour'] }}"
         weekday:  "{{ crons[item]['weekday'] }}"
-        job:      "ansible-playbook ${BLINK_PATH}/main.yaml -i ${BLINK_PATH}/inventory/all.yaml -t base-config -e brightness={{ crons[item]['brightness'] }} -e color={{ crons[item]['color'] }}"
+        job:      "ansible-playbook {{ BLINK_PATH }}/main.yaml -i {{ BLINK_PATH }}/inventory/all.yaml -t base-config -e brightness={{ crons[item]['brightness'] }} -e color={{ crons[item]['color'] }}"
         user:     "{{ user.stdout }}"
         disabled: "{{ crons[item]['disabled'] }}"
       with_items: "{{ crons.keys() | list }}"
