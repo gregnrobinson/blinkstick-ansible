@@ -5,8 +5,6 @@ name: blinkstick-ansible-test
 on:
   schedule:
     - cron: '0 0 * * *'
-  push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
 
@@ -47,7 +45,7 @@ jobs:
             ping -c 3 ${i}
           done
 
-      - name: Run Ansible playbook
+      - name: Run Ansible Playbook
         uses: dawidd6/action-ansible-playbook@v2.4.0
         with:
           playbook: main.yaml
