@@ -1,3 +1,0 @@
-#!/bin/bash
-
-blink-rave
