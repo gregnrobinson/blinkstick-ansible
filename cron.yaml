@@ -3,9 +3,9 @@
   gather_facts: no
   vars:
     crons:
-      day:   { minute: '*', hour: '*',  weekday: '*', disabled: 'no', job: 'bash blink-night'}
-      night: { minute: '0', hour: '21', weekday: '*', disabled: 'no', job: 'bash blink-night'}
-      rave:  { minute: '0', hour: '17', weekday: '*', disabled: 'no', job: 'bash blink-rave'}
+      day:   { minute: '*', hour: '*',  weekday: '*', disabled: 'no', job: 'blink-night'}
+      night: { minute: '0', hour: '21', weekday: '*', disabled: 'no', job: 'blink-night'}
+      rave:  { minute: '0', hour: '17', weekday: '*', disabled: 'no', job: 'blink-rave'}
   tasks:
     - name: cron - env
       include_role:
