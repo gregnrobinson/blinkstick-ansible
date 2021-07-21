@@ -35,7 +35,7 @@ jobs:
             ssh-keyscan ${IP} >> ~/.ssh/known_hosts
             printf "%s" "$SSH_KEY" > ~/.ssh/key
             chmod 600 ~/.ssh/key
-            tailscale ping ${i}
+            tailscale ping ${IP}
           done
       - name: Run Ansible playbook
         uses: dawidd6/action-ansible-playbook@v2.4.0
@@ -45,10 +45,10 @@ jobs:
           key: ${{secrets.SSH}}
           inventory: |
             [all]
-              kube1
-              kube2
-              kube3
-              kube4
+              100.100.205.35
+              100.73.57.125
+              100.97.134.97
+              100.98.26.115
 
             [all:vars]
             ansible_user=pi
