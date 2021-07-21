@@ -1,7 +1,7 @@
 ---
 - name: generate
   template:
-    src: internet_status.py.j2
+    src: internet_status.py
     dest: /home/pi/internet_status.py
   become: true
 
