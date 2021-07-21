@@ -39,11 +39,10 @@ jobs:
           mkdir -p ~/.ssh
           for i in ${hosts[@]};
           do
-            IP="$(tailscale ip -6 ${i})"
-            ssh-keyscan ${IP} >> ~/.ssh/known_hosts
+            ssh-keyscan ${i} >> ~/.ssh/known_hosts
             printf "%s" "${SSH_KEY}" > ~/.ssh/key
             chmod 600 ~/.ssh/key
-            tailscale ping ${IP}
+            ping -c 3 ${i}
           done
 
       - name: Run Ansible playbook
