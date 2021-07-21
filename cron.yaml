@@ -3,8 +3,9 @@
   gather_facts: no
   vars:
     crons:
-      day:   { minute: '0', hour: '8',  weekday: '*', disabled: 'no', brightness: '70', color: 'green'}
-      night: { minute: '0', hour: '21', weekday: '*', disabled: 'no', brightness: '30', color: 'cyan'}
+      day:   { minute: '0', hour: '8',  weekday: '*',   disabled: 'no', tag: 'base-config', brightness: '70', color: 'green' }
+      night: { minute: '0', hour: '21', weekday: '*',   disabled: 'no', tag: 'base-config', brightness: '20', color: 'cyan' }
+      rave:  { minute: '0', hour: '17', weekday: 'FRI', disabled: 'no', tag: 'rave',        brightness: '80', color: 'cyan' }
   tasks:
     - name: aliases
       include_role:
@@ -35,7 +36,7 @@
         minute:   "{{ crons[item]['minute'] }}"
         hour:     "{{ crons[item]['hour'] }}"
         weekday:  "{{ crons[item]['weekday'] }}"
-        job:      "ansible-playbook {{ BLINK_PATH }}/main.yaml -i {{ BLINK_PATH }}/inventory/all.yaml -t base-config -e brightness={{ crons[item]['brightness'] }} -e color={{ crons[item]['color'] }}"
+        job:      "ansible-playbook {{ BLINK_PATH }}/main.yaml -i {{ BLINK_PATH }}/inventory/all.yaml -t {{ tag }} -e brightness={{ crons[item]['brightness'] }} -e color={{ crons[item]['color'] }}"
         user:     "{{ user.stdout }}"
         disabled: "{{ crons[item]['disabled'] }}"
       with_items: "{{ crons.keys() | list }}"
