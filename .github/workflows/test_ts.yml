@@ -25,7 +25,7 @@ jobs:
       - name: Add SSH key
         id: ssh
         env:
-          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
           hosts=("kube1" "kube2" "kube3" "kube4")
           mkdir -p ~/.ssh
