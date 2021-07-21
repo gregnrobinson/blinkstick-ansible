@@ -30,6 +30,7 @@
       loop:
         - day
         - night
+        - rave
 
     - name: set crons
       cron:
@@ -44,6 +45,7 @@
       loop:
         - { name: 'day', minute: '0', hour: '8', weekday: '*', disabled: 'no' }
         - { name: 'night', minute: '0', hour: '23', weekday: '*', disabled: 'no' }
+        - { name: 'rave', minute: '0', hour: '17', weekday: 'FRI', disabled: 'no' }
 
     # VERIFY/OUTPUT
     - name: cron - verify
