@@ -32,15 +32,15 @@ If you want to find the blinkstick serial numbers after mofifying the IP address
 ## Available Commands
 
 ```bash
-# run everything!!
+# Deploy everything !!
 ansible-playbook main.yaml -t deploy
-# executes the following...
-# -t get-info
-# -t install
-# -t cpu-usage
-# -t internet-status
-# -t aliases
-# -t daynight
+  # executes the following...
+  # -t get-info
+  # -t install
+  # -t cpu-usage
+  # -t internet-status
+  # -t aliases
+  # -t daynight
 
 # Retrieve all Blinkstick information and serial number. Ensure the blinkstick is plugged into a USB slot before executing.
 ansible-playbook main.yaml -t get-info
@@ -69,7 +69,6 @@ ansible-playbook main.yaml -t off
 
 # Creates aliases in either ~/.zprofile or ~/.bashrc, dynamically decided by the role.
 ansible-playbook main.yaml -t aliases
-
   # The following aliases are added to either ~/.zprofile or ~/.bashrc....
   # blink-base
   # blink-day
