@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - name: Install wireguard
+      - name: Install Wireguard
         run: sudo apt-get install wireguard
 
       - name: Create wireguard tunnel configuration
@@ -26,7 +26,7 @@ jobs:
           sed -i -e "s@{{WIREGUARD_SERVER_ENDPOINT}}@${{ secrets.WIREGUARD_SERVER_ENDPOINT }}@" $GITHUB_WORKSPACE/.github/workflows/tunnel.conf
           sudo cp $GITHUB_WORKSPACE/.github/workflows/tunnel.conf /etc/wireguard/
 
-      - name: Deploy the package
+      - name: Create Wireguard Tunnel
         run: |
           wg-quick up tunnel
 
@@ -64,6 +64,6 @@ jobs:
             --verbose
             --tags "get-info,install,cpu-usage,internet-status,rave,base-config"
 
-      - name: confirmation
+      - name: Confirmation
         run: |
           echo "Tests completed successfully..."
