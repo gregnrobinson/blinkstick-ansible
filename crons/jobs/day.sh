@@ -1,4 +1,3 @@
-# BEGIN ANSIBLE MANAGED BLOCK
- #!/bin/bash
+#!/bin/bash
 
 blink-day
