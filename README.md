@@ -1,6 +1,6 @@
 # Blinkstick Ansible
 
-![testing workflow](https://github.com/gregnrobinson/blinkstick-ansible/actions/workflows/testing.yml/badge.svg)
+![deploy workflow](https://github.com/gregnrobinson/blinkstick-ansible/actions/workflows/testing.yml/badge.svg)
 
 Much of the inspiration is from https://github.com/arvydas/blinkstick-python/wiki where some of the python snippets worked as-is and some did not. Some of the snippets are from Python 2.7 and wouldn't work on Python 3.X. I am using At least Python 3.8 for everything python related.
 
