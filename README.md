@@ -79,7 +79,7 @@ ansible-playbook main.yaml -t aliases
 
 ## Cron Schedules
 
-Add lines to the `vars.crons` section of `cron.yaml` to create cron jobs on the machine the executes the Ansible playbook.
+Add lines to the `vars.crons` section of `cron.yaml` to create cron jobs that execute locally on the machine running Ansible.
 
 ```yaml
 vars:
