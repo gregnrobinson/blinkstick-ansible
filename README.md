@@ -71,7 +71,7 @@ ansible-playbook main.yaml -t off
 ansible-playbook main.yaml -t aliases
 
   # The following aliases are added to either ~/.zprofile or ~/.bashrc....
-  @ blink-base
+  # blink-base
   # blink-day
   # blink-night
   # blink-rave
