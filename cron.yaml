@@ -3,9 +3,9 @@
   gather_facts: no
   vars:
     crons:
-      day:   { minute: '0', hour: '1',  weekday: "*", disabled: "no" }
-      night: { minute: '0', hour: '21', weekday: "*", disabled: "no" }
-      rave:  { minute: '0', hour: '17', weekday: "*", disabled: "no" }
+      day:   { minute: '*', hour: '*',  weekday: '*', disabled: 'no' }
+      night: { minute: '0', hour: '21', weekday: '*', disabled: 'no' }
+      rave:  { minute: '0', hour: '17', weekday: '*', disabled: 'no' }
   tasks:
     - name: cron - env
       include_role:
@@ -43,8 +43,7 @@
       register: output
       with_items: "{{ crons.keys() | list }}"
 
-    # VERIFY/OUTPUT
-    - name: cron - verify
+    - name: cron - 
       shell: crontab -l
       register: output
 
