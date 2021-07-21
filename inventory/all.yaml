@@ -4,15 +4,15 @@ all:
     ansible_ssh_private_key_file: ~/.ssh/id_rsa
   hosts:
     kube1:
-      ansible_host: kube1
+      ansible_host: 192.168.0.81
       serial: BS039450-3.0
     kube2:
-      ansible_host: kube2
+      ansible_host: 192.168.0.82
       serial: BS039442-3.0
     kube3:
-      ansible_host: kube3
+      ansible_host: 192.168.0.83
       serial: BS039438-3.0
     kube4:
-      ansible_host: kube4
+      ansible_host: 192.168.0.84
       serial: BS039441-3.0
 
