@@ -14,6 +14,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: omahn/wireguard-ssh-github-action@v1.1
+        with:
+          # Required. IP address of your WireGuard peer.
+          peer_ip: ''
+          # Required. SSH public key as a string.
+          ssh_public_key: ''
+          # Port of WireGuard peer.
+          peer_port: '51820'
+          # Private IP of GitHub peer.
+          github_ip: '192.168.192.1'
+          # Seconds to wait for SSH connection.
+          ssh_connection_timeout: '300'
+          # Seconds to timeout SSH session.
+          session_timeout: 3600
 
       - name: Run Ansible playbook
         uses: dawidd6/action-ansible-playbook@v2.4.0
