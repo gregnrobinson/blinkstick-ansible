@@ -50,13 +50,16 @@ jobs:
         with:
           playbook: main.yaml
           directory: ./
-          key: ${{secrets.SSH}}
+          key: ${{secrets.SSH_PRIVATE_KEY}}
           inventory: |
             [all]
             192.168.0.81
             192.168.0.82
             192.168.0.83
             192.168.0.84
+            
+            [all:vars]
+            ansible_user=pi
           options: |
             --verbose
             --tag get-info
