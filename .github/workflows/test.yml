@@ -27,7 +27,6 @@ jobs:
 
             [group1]
               example.com
-          vault_password: ${{secrets.VAULT_PASSWORD}}
           options: |
             --verbose
             --tag deploy
