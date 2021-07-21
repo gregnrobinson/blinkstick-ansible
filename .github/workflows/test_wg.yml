@@ -25,14 +25,26 @@ jobs:
           sed -i -e "s@{{WIREGUARD_PRIVATE_IP}}@${{ secrets.WIREGUARD_PRIVATE_IP }}@" $GITHUB_WORKSPACE/.github/workflows/tunnel.conf
           sed -i -e "s@{{WIREGUARD_SERVER_ENDPOINT}}@${{ secrets.WIREGUARD_SERVER_ENDPOINT }}@" $GITHUB_WORKSPACE/.github/workflows/tunnel.conf
           sudo cp $GITHUB_WORKSPACE/.github/workflows/tunnel.conf /etc/wireguard/
-      - name: Prepare ssh key for remote login
-        run: |
-          mkdir ~/.ssh/
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
+
       - name: Deploy the package
         run: |
           wg-quick up tunnel
+
+      - name: Setup SSH
+        id: ssh
+        env:
+          SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          hosts=("192.168.0.81" "192.168.0.82" "192.168.0.83" "192.168.0.84")
+          mkdir -p ~/.ssh
+          for i in ${hosts[@]};
+          do
+            IP="$(tailscale ip -6 ${i})"
+            ssh-keyscan ${IP} >> ~/.ssh/known_hosts
+            printf "%s" "${SSH_KEY}" > ~/.ssh/key
+            chmod 600 ~/.ssh/key
+            tailscale ping ${IP}
+          done
 
       - name: Run Ansible playbook
         uses: dawidd6/action-ansible-playbook@v2.4.0
