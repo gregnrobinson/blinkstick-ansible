@@ -1,10 +1,11 @@
 - hosts: localhost
-  become: true
+  become: false
   gather_facts: no
   vars:
-    base_config: 
-      color: green
-      brightness: 50
+    crons:
+      day:   { minute: '0', hour: '1',  weekday: "*", disabled: "no" }
+      night: { minute: '0', hour: '21', weekday: "*", disabled: "no" }
+      rave:  { minute: '0', hour: '17', weekday: "*", disabled: "no" }
   tasks:
     - name: cron - env
       include_role:
@@ -14,9 +15,7 @@
     - name: cron - get user
       shell: whoami
       register: user
-      become: false
 
-    # DAYNIGHT
     - name: generate crons
       vars:
         ANSIBLE_CONFIG: "{{ dir.stdout }}/ansible.cfg"
@@ -26,31 +25,27 @@
         path: ~/crons/{{ item }}.sh
         backup: no
         create: yes
-      become: false
-      loop:
-        - day
-        - night
-        - rave
+      loop: "{{ crons.keys() | list }}"
+
+    - name: chmod+x
+      file: dest=~/crons/{{ item }}.sh mode=a+x
+      loop: "{{ crons.keys() | list }}"
 
     - name: set crons
       cron:
-        name:     "{{ item.name }}"
-        minute:   "{{ item.minute }}"
-        hour:     "{{ item.hour }}"
-        weekday:  "{{ item.weekday }}"
-        job:      ~/crons/{{ item.name }}.sh
+        name:     "{{ item }}"
+        minute:   "{{ crons[item]['minute'] }}"
+        hour:     "{{ crons[item]['hour'] }}"
+        weekday:  "{{ crons[item]['weekday'] }}"
+        job:      ~/crons/{{ item }}.sh
         user:     "{{ user.stdout }}"
-        disabled: "{{ item.disabled }}"
+        disabled: "{{ crons[item]['disabled'] }}"
       register: output
-      loop:
-        - { name: 'day',   minute: '0', hour: '8',  weekday: '*',   disabled: 'no' }
-        - { name: 'night', minute: '0', hour: '23', weekday: '*',   disabled: 'no' }
-        - { name: 'rave',  minute: '0', hour: '17', weekday: 'FRI', disabled: 'no' }
+      with_items: "{{ crons.keys() | list }}"
 
     # VERIFY/OUTPUT
     - name: cron - verify
       shell: crontab -l
-      become: false
       register: output
 
     - name: output
