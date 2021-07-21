@@ -48,7 +48,7 @@ jobs:
               192.168.0.84
           options: |
             --verbose
-            --tag deploy
+            --tag get-info
 
       - name: confirmation
         run: |
