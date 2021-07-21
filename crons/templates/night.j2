@@ -1,8 +1,3 @@
 #!/bin/bash
 
-# add ansible paths for project
-export BLINK_PATH="{{ BLINK_PATH }}"
-export ANSIBLE_CONFIG="{{ ANSIBLE_CONFIG }}"
-
-# blink-night
-ansible-playbook ${BLINK_PATH}/main.yaml -i ${BLINK_PATH}/inventory/all.yaml -t blink-night
+blink-night

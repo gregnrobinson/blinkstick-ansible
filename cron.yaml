@@ -3,9 +3,9 @@
   gather_facts: no
   vars:
     crons:
-      day:   { minute: '*', hour: '*',  weekday: '*', disabled: 'no' }
-      night: { minute: '0', hour: '21', weekday: '*', disabled: 'no' }
-      rave:  { minute: '0', hour: '17', weekday: '*', disabled: 'no' }
+      day:   { minute: '*', hour: '*',  weekday: '*', disabled: 'no', job: 'sudo blink-day'}
+      night: { minute: '0', hour: '21', weekday: '*', disabled: 'no', job: 'sudo blink-night'}
+      rave:  { minute: '0', hour: '17', weekday: '*', disabled: 'no', job: 'sudo blink-rave'}
   tasks:
     - name: cron - env
       include_role:
@@ -20,20 +20,20 @@
       debug:
         var: user.stdout_lines
 
-    - name: generate
-      vars:
-        ANSIBLE_CONFIG: "{{ dir.stdout }}/ansible.cfg"
-        BLINK_PATH: "{{ dir.stdout }}"
-      blockinfile:
-        block: '{{ lookup("template", "{{ dir.stdout }}/crons/templates/{{ item }}.j2") }}'
-        path: "{{ dir.stdout }}/crons/jobs/{{ item }}.sh"
-        backup: no
-        create: yes
-      loop: "{{ crons.keys() | list }}"
+    #- name: generate
+    #  vars:
+    #    ANSIBLE_CONFIG: "{{ dir.stdout }}/ansible.cfg"
+    #    BLINK_PATH: "{{ dir.stdout }}"
+    #  blockinfile:
+    #    block: '{{ lookup("template", "{{ dir.stdout }}/crons/templates/{{ item }}.j2") }}'
+    #    path: "{{ dir.stdout }}/crons/jobs/{{ item }}.sh"
+    #    backup: no
+    #    create: yes
+    #  loop: "{{ crons.keys() | list }}"
 
-    - name: chmod+x
-      file: dest=~/crons/{{ item }}.sh mode=a+x
-      loop: "{{ crons.keys() | list }}"
+    #- name: chmod+x
+    #  file: dest=~/crons/{{ item }}.sh mode=a+x
+    #  loop: "{{ crons.keys() | list }}"
 
     - name: execute
       cron:
@@ -41,7 +41,7 @@
         minute:   "{{ crons[item]['minute'] }}"
         hour:     "{{ crons[item]['hour'] }}"
         weekday:  "{{ crons[item]['weekday'] }}"
-        job:      "{{ dir.stdout }}/crons/jobs/{{ item }}.sh"
+        job:      "{{ crons[item]['job'] }}"
         user:     "{{ user.stdout }}"
         disabled: "{{ crons[item]['disabled'] }}"
       register: output
