@@ -11,16 +11,6 @@ The reason for creating this repository was for me to have an easy way to operat
   <img src="https://user-images.githubusercontent.com/26353407/126090049-028d24e4-5ed2-4389-b4d3-83007da041b6.jpg" width="415" />
 </p>
 
-| tag      |      purpose     |
-|:----------|:-------------|
-| get-info       | Collects all blinkstick information across all nodes. This includes serial numbers. |
-| install         | Install all python packages defined in the `python_packages` list veriable in `main.yaml` |
-| cpu-usage       | Monitors CPU usage using `psutil` and returns the appropriate color bases on the percentage. This script runs indefinitely and checks every second| 
-| internet-status | when executed, a pytnon script checks for internet access. If internet is up, color is green, if internet is down, color switches to purple |
-| aliases | Used to create aliases that can be used directly in the commandline to execute the tools  |
-| rave | Executes a sequenece to perform a lightshow on all blinksticks |
-
-
 ## Instructions
 
 Get the following packages and materials on the machine executing Ansible. I am using 4 Blinkstick Nanos for this project, but any blinkstick should work.
@@ -41,7 +31,16 @@ node1: # name of the host. Arbitruary, it can be anything.
 
 If you want to find the blinkstick serial numbers after mofifying the IP addresses, run the `get-info` tag. This saves you from logging into each node to find the serials.
 
-## Available Commands
+## Available tags
+
+| tag      |      purpose     |
+|:----------|:-------------|
+| get-info       | Collects all blinkstick information across all nodes. This includes serial numbers. |
+| install         | Install all python packages defined in the `python_packages` list veriable in `main.yaml` |
+| cpu-usage       | Monitors CPU usage using `psutil` and returns the appropriate color bases on the percentage. This script runs indefinitely and checks every second| 
+| internet-status | when executed, a pytnon script checks for internet access. If internet is up, color is green, if internet is down, color switches to purple |
+| aliases | Used to create aliases that can be used directly in the commandline to execute the tools  |
+| rave | Executes a sequenece to perform a lightshow on all blinksticks |
 
 ```bash
 # Deploy everything !!
