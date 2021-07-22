@@ -6,6 +6,11 @@ Much of the inspiration is from https://github.com/arvydas/blinkstick-python/wik
 
 The reason for creating this repository was for me to have an easy way to operate 4 Blinkstick Nanos that I had bought for my raspberry pi kubernetes cluster. Having multiple nodes with separate Blinksticks, I wanted an abstraction layer on all four nodes that makes managing the configurations less monotonous. I have supplied several roles that can be executed against the blinksticks.
 
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/26353407/126090043-1788cdf8-8f37-4aba-a160-d526d99923f5.jpg" width="415" />
+  <img src="https://user-images.githubusercontent.com/26353407/126090049-028d24e4-5ed2-4389-b4d3-83007da041b6.jpg" width="415" />
+</p>
+
 | tag      |      purpose     |
 |:----------|:-------------|
 | get-info       | Collects all blinkstick information across all nodes. This includes serial numbers. |
@@ -15,12 +20,6 @@ The reason for creating this repository was for me to have an easy way to operat
 | aliases | Used to create aliases that can be used directly in the commandline to execute the tools  |
 | rave | Executes a sequenece to perform a lightshow on all blinksticks |
 
-
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/26353407/126090043-1788cdf8-8f37-4aba-a160-d526d99923f5.jpg" width="415" />
-  <img src="https://user-images.githubusercontent.com/26353407/126090049-028d24e4-5ed2-4389-b4d3-83007da041b6.jpg" width="415" />
-</p>
 
 ## Instructions
 
