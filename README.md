@@ -108,4 +108,4 @@ ansible-playbook cron.yaml
 
 ## Testing
 
-I am running a github action every day the runs all the tags in this repository to ensure everything works. The Github actions are executing directly against nodes using a Wireguard tunnel that connects directly to my Wireguard endpoint configured on Kubernetes. You can explore the Ansible output by going to the Actions tab.
+I am running a github action every day that runs all available tags in this repository to ensure everything works. The Github actions are executing directly against the nodes in the pictures using a Wireguard tunnel that connects directly to my public Wireguard server on Kubernetes. You can explore the Ansible output by going to the [Actions](https://github.com/gregnrobinson/blinkstick-ansible/actions) tab.
