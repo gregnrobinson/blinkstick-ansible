@@ -52,7 +52,6 @@ ansible-playbook main.yaml -t deploy
   # -t cpu-usage
   # -t internet-status
   # -t aliases
-  # -t daynight
 
 # Retrieve all Blinkstick information and serial number. Ensure the blinkstick is plugged into a USB slot before executing.
 ansible-playbook main.yaml -t get-info
