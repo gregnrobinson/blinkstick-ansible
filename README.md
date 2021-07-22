@@ -15,7 +15,7 @@ The reason for creating this repository was for me to have an easy way to operat
 
 Get the following packages and materials on the machine executing Ansible. I am using 4 Blinkstick Nanos for this project, but any blinkstick should work.
 
-- [Get a Blinkstick](https://www.blinkstick.com/products/blinkstick-nano) 
+- [Get some Blinksticks](https://www.blinkstick.com/products/blinkstick-nano)
 - [ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
 - [python 3.X](https://www.python.org/downloads/)
 - [pip](https://pip.pypa.io/en/stable/installing/)
@@ -105,3 +105,7 @@ To apply cron schedules from the root of the repository...
 ```bash
 ansible-playbook cron.yaml
 ```
+
+## Testing
+
+I am running a github action every day the runs all the tags in this repository to ensure everything works. The Github actions are executing directly against nodes using a Wireguard tunnel that connects directly to my Wireguard endpoint configured on Kubernetes. You can explore the Ansible output by going to the Actions tab.
