@@ -33,7 +33,7 @@ If you want to find the blinkstick serial numbers after mofifying the IP address
 
 ## Available Tags
 
-| tag      |      purpose     |
+| tag      |      description     |
 |:----------|:-------------|
 | get-info       | Collects all blinkstick information across all nodes. This includes serial numbers. |
 | install         | Install all python packages defined in the `python_packages` list variable in `main.yaml` |
