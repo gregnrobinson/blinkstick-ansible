@@ -41,6 +41,7 @@ If you want to find the blinkstick serial numbers after mofifying the IP address
 | internet-status | When executed, a python script checks for internet access. If internet is up, color is green, if internet is down, color switches to purple. |
 | aliases | Used to create aliases that can be used directly in the command-line to execute the defined roles without knowing the full ansible-playbook command  |
 | rave | Executes a sequenece to perform a lightshow on all blinksticks. |
+| off | Turn all blinksticks off. |
 
 ```bash
 # Deploy everything !!
