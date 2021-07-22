@@ -31,7 +31,7 @@ node1: # name of the host. Arbitruary, it can be anything.
 
 If you want to find the blinkstick serial numbers after mofifying the IP addresses, run the `get-info` tag. This saves you from logging into each node to find the serials.
 
-## Available tags
+## Available Tags
 
 | tag      |      purpose     |
 |:----------|:-------------|
