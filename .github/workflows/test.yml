@@ -20,7 +20,7 @@ jobs:
         uses: tailscale/github-action@main
         with:
           authkey: ${{ secrets.TAILSCALE_AUTH_KEY_EPHEMERAL }}
-          version: 1.9.0
+          version: 1.10.2
 
       - name: Setup SSH
         id: ssh
