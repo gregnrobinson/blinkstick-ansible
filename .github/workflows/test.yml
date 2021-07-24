@@ -1,4 +1,4 @@
-name: ansible-tailscale
+name: test
 
 on:
   schedule:
