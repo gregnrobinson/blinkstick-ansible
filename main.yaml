@@ -11,6 +11,7 @@
       - psutil
       - feedparser
       - ansible
+      - jmespath
   roles:
     - { role: get_info,        tags: ["get-info", "deploy"] }
     - { role: install,         tags: ["install", "deploy"] }
