@@ -1,0 +1,57 @@
+name: night
+
+on:
+  schedule:
+    # 12AM UTC --> 8PM EST
+    - cron: '0 0 * * *'
+
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Setup Tailscale
+        uses: tailscale/github-action@main
+        with:
+          authkey: ${{ secrets.TAILSCALE_AUTH_KEY }}
+
+      - name: Setup SSH
+        id: ssh
+        env:
+          SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          hosts=("kube1" "kube2" "kube3" "kube4")
+          mkdir -p ~/.ssh
+          for i in ${hosts[@]};
+          do
+            host="${i}.gregnrobinson.github.beta.tailscale.net"
+            ssh-keyscan ${host} >> ~/.ssh/known_hosts
+            printf "%s" "${SSH_KEY}" > ~/.ssh/key
+            chmod 600 ~/.ssh/key
+            ping -c 3 ${host}
+          done
+
+      - name: Run Ansible Playbook
+        uses: dawidd6/action-ansible-playbook@v2.4.0
+        with:
+          playbook: main.yaml
+          directory: ./
+          key: ${{secrets.SSH_PRIVATE_KEY}}
+          inventory: |
+            [all]
+            kube1.gregnrobinson.github.beta.tailscale.net serial=BS039450-3.0
+            kube2.gregnrobinson.github.beta.tailscale.net serial=BS039442-3.0
+            kube3.gregnrobinson.github.beta.tailscale.net serial=BS039438-3.0
+            kube4.gregnrobinson.github.beta.tailscale.net serial=BS039441-3.0
+            
+            [all:vars]
+            ansible_user=pi
+          options: |
+            --verbose
+            --tag base-config -e color=green -e brightness=80
+
+      - name: Confirmation
+        run: |
+          echo "Tests completed successfully..."
