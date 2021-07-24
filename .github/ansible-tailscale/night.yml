@@ -4,6 +4,9 @@ on:
   schedule:
     # 12AM UTC --> 8PM EST
     - cron: '0 0 * * *'
+  push:
+    branches:
+      - main
 
   workflow_dispatch:
 jobs:
