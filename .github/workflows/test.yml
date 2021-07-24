@@ -33,10 +33,11 @@ jobs:
           for i in ${hosts[@]};
           do
             host="${i}.gregnrobinson.github.beta.tailscale.net"
-            #ssh-keyscan ${host} >> ~/.ssh/known_hosts
+            host6=$(tailscale ip -6 $host)
+            ssh-keyscan ${host6} >> ~/.ssh/known_hosts
             printf "%s" "${SSH_KEY}" > ~/.ssh/key
             chmod 600 ~/.ssh/key
-            ping -c 3 ${host}
+            ping -c 3 ${host6}
           done
 
       - name: Run Ansible Playbook
