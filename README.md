@@ -1,6 +1,6 @@
 # Blinkstick Ansible
 
-![deploy workflow](https://github.com/gregnrobinson/blinkstick-ansible/actions/workflows/ansible-test.yml/badge.svg)
+![deploy workflow](https://github.com/gregnrobinson/blinkstick-ansible/actions/workflows/ansible-tailscale.yml/badge.svg)
 
 Much of the inspiration is from https://github.com/arvydas/blinkstick-python/wiki where some of the python snippets worked as-is and some did not. Some of the snippets are from Python 2.7 and wouldn't work on Python 3.X. I am using At least Python 3.8 for everything python related.
 
@@ -10,16 +10,6 @@ The reason for creating this repository was for me to have an easy way to operat
   <img src="https://user-images.githubusercontent.com/26353407/126090043-1788cdf8-8f37-4aba-a160-d526d99923f5.jpg" width="415" />
   <img src="https://user-images.githubusercontent.com/26353407/126090049-028d24e4-5ed2-4389-b4d3-83007da041b6.jpg" width="415" />
 </p>
-
-| tag              |      purpose     |
-|:-----------------|:-------------|
-| get-info       | collects all blinkstick information across all nodes. This includes serial numbers. |
-| install         | install all python packages defined in the `python_packages` list veriable in `main.yaml` |
-| cpu-usage       | monitors CPU usage using `psutil` and returns the appropriate color bases on the percentage. This script runs indefinitely and checks every second| 
-| internet-status | when executed, a pytnon script checks for internet access. If internet is up, color is green, if there is no internet, color switches to purple |
-| aliases | used to create aliases that can be used directly in the commandline to execute the tools  |
-| rave | executes a sequenece to perform a lightshow on all blinksticks |
-
 
 ## Instructions
 
