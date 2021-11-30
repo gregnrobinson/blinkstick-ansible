@@ -16,7 +16,6 @@ jobs:
         uses: tailscale/github-action@main
         with:
           authkey: ${{ secrets.TAILSCALE_AUTH_KEY }}
-          version: 1.10.2
 
       - name: Setup SSH
         id: ssh
