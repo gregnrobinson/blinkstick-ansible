@@ -44,7 +44,7 @@ jobs:
           key: ${{secrets.SSH_PRIVATE_KEY}}
           inventory: |
             [all]
-            fd7a:115c:a1e0:ab12:4843:cd96:6264:cd23 serial=BS039450-3.0
+            fd7a:115c:a1e0:ab12:4843:cd96:6262:be69 serial=BS039450-3.0
             fd7a:115c:a1e0:ab12:4843:cd96:6249:397d serial=BS039442-3.0
             fd7a:115c:a1e0:ab12:4843:cd96:6261:8661 serial=BS039438-3.0
             fd7a:115c:a1e0:ab12:4843:cd96:6262:1a73 serial=BS039441-3.0
