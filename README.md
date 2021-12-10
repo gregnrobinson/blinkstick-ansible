@@ -11,6 +11,28 @@ The reason for creating this repository was for me to have an easy way to operat
   <img src="https://user-images.githubusercontent.com/26353407/126090049-028d24e4-5ed2-4389-b4d3-83007da041b6.jpg" width="415" />
 </p>
 
+## Install
+
+Install dos2unix
+
+`sudo apt-get install dos2unix`
+
+run dos2unix on blinkstick
+
+`sudo dos2unix /usr/local/bin/blinkstick`
+
+Install pyusb
+
+`sudo pip install pyusb`
+
+Make blinkstick cli executable
+
+`sudo chmod +x /usr/local/bin/blinkstick`
+
+Update first line of blinkstick, change...
+
+`#!/usr/bin/env python` to `#!/usr/bin/env python3`
+
 ## Instructions
 
 Get the following packages and materials on the machine executing Ansible. I am using 4 Blinkstick Nanos for this project, but any blinkstick should work.
