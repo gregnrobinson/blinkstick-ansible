@@ -53,7 +53,7 @@ jobs:
             ansible_user=pi
           options: |
             --verbose
-            --tags "get-info,install,cpu-usage,internet-status,rave,base-config"
+            --tags "get-info,cpu-usage,internet-status,rave,base-config"
 
       - name: Confirmation
         run: |
