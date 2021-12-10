@@ -13,26 +13,6 @@ The reason for creating this repository was for me to have an easy way to operat
 
 ## Install
 
-Install dos2unix
-
-`sudo apt-get install dos2unix`
-
-run dos2unix on blinkstick
-
-`sudo dos2unix /usr/local/bin/blinkstick`
-
-Install pyusb
-
-`sudo pip install pyusb`
-
-Make blinkstick cli executable
-
-`sudo chmod +x /usr/local/bin/blinkstick`
-
-Update first line of blinkstick, change...
-
-`#!/usr/bin/env python` to `#!/usr/bin/env python3`
-
 ## Instructions
 
 Get the following packages and materials on the machine executing Ansible. I am using 4 Blinkstick Nanos for this project, but any blinkstick should work.
@@ -128,6 +108,37 @@ To apply cron schedules from the root of the repository...
 ansible-playbook cron.yaml
 ```
 
-## Testing
+## Troubleshooting
+
+Blinkstick is having problems on python `3.9.2`. I installed the latest version of raspian (debian bullseye) and it ships with `3.9.2`. On other units I was using `<=3.8.2` so installed python `3.8.2` on debian and got it work using the steps below.
+
+```bash
+# Install python 3.8 on debian: https://linuxize.com/post/how-to-install-python-3-8-on-debian-10/
+
+mkdir ~/python38-env && cd ~/python38-env
+python3.8 -m venv my_app_venv
+python3.8 -m venv .
+source ./bin/activate
+
+sudo apt-get install dos2unix
+pip install pyusb
+pip install blinkstick
+sudo chmod +x /usr/local/bin/blinkstick
+
+# Change the interpreter to point to the virtual environments interpreter.
+## In my case I used python38-env as the target when creating the virtual env in the early steps.
+
+`#!/usr/bin/env python` to `#!/home/pi/python38-env/bin/python3`
+```
+
+Run `sudo blinkstick` and you should see the help menu.
+
+Running `sudo blinkstick --blink green` works on the host.
+
+### Reference
+
+Install python 3.8 on debian: https://linuxize.com/post/how-to-install-python-3-8-on-debian-10/, https://www.linuxcapable.com/how-to-install-python-3-8-on-debian-11-bullseye/
+Python 3.8 workaround reference: https://github.com/arvydas/blinkstick-python/issues/34
+
 
 I am running a github action every day that runs all available tags in this repository to ensure everything works. The Github actions are executing directly against the nodes in the pictures using a Wireguard tunnel that connects directly to my public Wireguard server on Kubernetes. You can explore the Ansible output by going to the [Actions](https://github.com/gregnrobinson/blinkstick-ansible/actions) tab.
