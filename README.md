@@ -173,7 +173,7 @@ python3.8 -m venv .
 source ./bin/activate
 ```
 
-### Install blinkstick inside virtual environment
+## Install blinkstick inside virtual environment
 ```
 
 sudo apt-get install dos2unix
@@ -182,7 +182,7 @@ pip install blinkstick
 sudo chmod +x /usr/local/bin/blinkstick
 ```
 
-## Change python interpretor for blinktick package
+### Change python interpretor for blinktick package
 
 *In my case I used python38-env as the target when creating the virtual env in the early steps.*
 
@@ -193,8 +193,7 @@ Run `sudo blinkstick` and you should see the help menu.
 Running `sudo blinkstick --blink green` works on the host.
 
 
-
-### Reference
+#### Reference
 
 Install python 3.8 on debian: https://linuxize.com/post/how-to-install-python-3-8-on-debian-10/, https://www.linuxcapable.com/how-to-install-python-3-8-on-debian-11-bullseye/
 Python 3.8 workaround reference: https://github.com/arvydas/blinkstick-python/issues/34
