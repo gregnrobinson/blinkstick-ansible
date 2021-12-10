@@ -112,6 +112,58 @@ ansible-playbook cron.yaml
 
 Blinkstick is having problems on python `3.9.2`. I installed the latest version of raspian (debian bullseye) and it ships with `3.9.2`. On other units I was using `<=3.8.2` so installed python `3.8.2` on debian and got it work using the steps below.
 
+### Python 3.9 Output
+
+```bash
+pi@kube1:~/python38-env $ python3 --version
+Python 3.9.2
+
+pi@kube1:~/python38-env $ sudo blinkstick --blink green
+Traceback (most recent call last):
+  File "/usr/local/bin/blinkstick", line 331, in <module>
+    sys.exit(main())
+  File "/usr/local/bin/blinkstick", line 220, in main
+    sticks = blinkstick.find_all()
+  File "/usr/local/lib/python3.9/dist-packages/blinkstick/blinkstick.py", line 1566, in find_all
+    result.extend([BlinkStick(device=d)])
+  File "/usr/local/lib/python3.9/dist-packages/blinkstick/blinkstick.py", line 217, in __init__
+    self.bs_serial = self.get_serial()
+  File "/usr/local/lib/python3.9/dist-packages/blinkstick/blinkstick.py", line 283, in get_serial
+    return self._usb_get_string(self.device, 3)
+  File "/usr/local/lib/python3.9/dist-packages/blinkstick/blinkstick.py", line 221, in _usb_get_string
+    return usb.util.get_string(device, index, 1033)
+  File "/usr/local/lib/python3.9/dist-packages/usb/util.py", line 260, in get_string
+    return buf[2:buf[0]].tostring().decode('utf-16-le')
+IndexError: array index out of range
+```
+
+### Python 3.8 Output
+
+```
+pi@kube1:~/python38-env $ source ./bin/activate
+(python38-env) pi@kube1:~/python38-env $ python --version
+Python 3.8.2
+```
+
+Change file `/usr/local/bin/blinkstick` interpretor from `#!/usr/bin/env python` to `#!/home/pi/python38-env/bin/python3`
+
+```bash
+(python38-env) pi@kube1:~/python38-env $ head -5 /usr/local/bin/blinkstick
+#!/home/pi/python38-env/bin/python3
+
+from optparse import OptionParser, IndentedHelpFormatter, OptionGroup
+from blinkstick import blinkstick
+```
+
+Run `sudo blinkstick --blink green`
+
+```bash
+(python38-env) pi@kube1:~/python38-env $ sudo blinkstick --blink green
+(python38-env) pi@kube1:~/python38-env $
+```
+
+
+### Create Python 3.8 virtual environment
 ```bash
 # Install python 3.8 on debian: https://linuxize.com/post/how-to-install-python-3-8-on-debian-10/
 
@@ -119,21 +171,28 @@ mkdir ~/python38-env && cd ~/python38-env
 python3.8 -m venv my_app_venv
 python3.8 -m venv .
 source ./bin/activate
+```
+
+### Install blinkstick inside virtual environment
+```
 
 sudo apt-get install dos2unix
 pip install pyusb
 pip install blinkstick
 sudo chmod +x /usr/local/bin/blinkstick
+```
 
-# Change the interpreter to point to the virtual environments interpreter.
-## In my case I used python38-env as the target when creating the virtual env in the early steps.
+## Change python interpretor for blinktick package
+
+*In my case I used python38-env as the target when creating the virtual env in the early steps.*
 
 `#!/usr/bin/env python` to `#!/home/pi/python38-env/bin/python3`
-```
 
 Run `sudo blinkstick` and you should see the help menu.
 
 Running `sudo blinkstick --blink green` works on the host.
+
+
 
 ### Reference
 
