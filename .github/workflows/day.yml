@@ -47,6 +47,7 @@ jobs:
             fd7a:115c:a1e0:ab12:4843:cd96:6249:397d serial=BS039442-3.0
             fd7a:115c:a1e0:ab12:4843:cd96:6261:8661 serial=BS039438-3.0
             fd7a:115c:a1e0:ab12:4843:cd96:6262:1a73 serial=BS039441-3.0
+            fd7a:115c:a1e0:ab12:4843:cd96:624d:675f serial=BS044917-3.0
             
             [all:vars]
             ansible_user=pi
