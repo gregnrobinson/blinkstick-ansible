@@ -110,7 +110,9 @@ ansible-playbook cron.yaml
 
 ## Troubleshooting
 
-Blinkstick is having problems on python `3.9.2`. I installed the latest version of raspian (debian bullseye) and it ships with `3.9.2`. On other units I was using `<=3.8.2` so installed python `3.8.2` on debian and got it work using the steps below.
+Blinkstick is having problems with python `3.9.2`. I installed the latest version of Raspian (Debian Bullseye) and it ships with `3.9.2`. On the other nodes, I was using `<=3.8.2` so installed python `3.8.2` on Debian and got it to work using the steps below.
+
+the issue appears when executing blinkstick using `sudo blinkstick`. This is essentially a workaround using a workaround because even with Python 3.8 there are problems which are outlined in [this issue](https://github.com/arvydas/blinkstick-python/issues/34).  Shown below is the output on each version followed by steps to get it working on your system using Python 3.8. I think even using Python 3.7 would just work out of the box without the extra steps...
 
 ### Python 3.9 Output
 
@@ -162,29 +164,31 @@ Run `sudo blinkstick --blink green`
 (python38-env) pi@kube1:~/python38-env $
 ```
 
+## Install Blinkstick inside Python 3.8 virtual environment
 
 ### Create Python 3.8 virtual environment
 ```bash
 # Install python 3.8 on debian: https://linuxize.com/post/how-to-install-python-3-8-on-debian-10/
 
 mkdir ~/python38-env && cd ~/python38-env
-python3.8 -m venv my_app_venv
 python3.8 -m venv .
 source ./bin/activate
 ```
 
-## Install blinkstick inside virtual environment
-```
+*Perform Python 3.8  workaround steps*
 
+```bash
 sudo apt-get install dos2unix
 pip install pyusb
 pip install blinkstick
 sudo chmod +x /usr/local/bin/blinkstick
 ```
 
-### Change python interpretor for blinktick package
+### Change python interpretor for blinktick module
 
-*In my case I used python38-env as the target when creating the virtual env in the early steps.*
+*Note: In my case I used python38-env as the target folder when creating the virtual env in the early steps.*
+
+By changing the interpreter in the module directly will allow Blinkstick to function when the virtual env is deactivated.
 
 `#!/usr/bin/env python` to `#!/home/pi/python38-env/bin/python3`
 
@@ -192,11 +196,8 @@ Run `sudo blinkstick` and you should see the help menu.
 
 Running `sudo blinkstick --blink green` works on the host.
 
+## Reference
 
-#### Reference
-
-Install python 3.8 on debian: https://linuxize.com/post/how-to-install-python-3-8-on-debian-10/, https://www.linuxcapable.com/how-to-install-python-3-8-on-debian-11-bullseye/
+Install Python 3.8 on Debian 10: https://linuxize.com/post/how-to-install-python-3-8-on-debian-10/
+Install Python 3.8 on Debian 11: https://www.linuxcapable.com/how-to-install-python-3-8-on-debian-11-bullseye/ *I used the Debian 10 tutorial for installing on bullseye but then found this version. Looks like it installs 3.8.12 instead of 3.8.2*
 Python 3.8 workaround reference: https://github.com/arvydas/blinkstick-python/issues/34
-
-
-I am running a github action every day that runs all available tags in this repository to ensure everything works. The Github actions are executing directly against the nodes in the pictures using a Wireguard tunnel that connects directly to my public Wireguard server on Kubernetes. You can explore the Ansible output by going to the [Actions](https://github.com/gregnrobinson/blinkstick-ansible/actions) tab.
