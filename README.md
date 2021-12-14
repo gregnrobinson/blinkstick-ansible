@@ -179,9 +179,10 @@ source ./bin/activate
 
 ```bash
 sudo apt-get install dos2unix
-pip install pyusb
-pip install blinkstick
+sudo pip install pyusb
+sudo pip install blinkstick
 sudo chmod +x /usr/local/bin/blinkstick
+sudo dos2unix /usr/local/bin/blinkstick
 ```
 
 ### Change python interpretor for blinktick module
