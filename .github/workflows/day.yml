@@ -23,16 +23,14 @@ jobs:
           SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
           set -x
-          hosts=("kube1" "kube2" "kube3" "kube4")
+          hosts=("fd7a:115c:a1e0:ab12:4843:cd96:6262:be69" "fd7a:115c:a1e0:ab12:4843:cd96:6249:397d" "fd7a:115c:a1e0:ab12:4843:cd96:6261:8661" "fd7a:115c:a1e0:ab12:4843:cd96:6262:1a73" "fd7a:115c:a1e0:ab12:4843:cd96:624d:675f")
           mkdir -p ~/.ssh
           for i in ${hosts[@]};
           do
-            host="${i}.gregnrobinson.github.beta.tailscale.net"
-            host6=$(tailscale ip -6 $host)
-            ssh-keyscan ${host6} >> ~/.ssh/known_hosts
+            ssh-keyscan ${i} >> ~/.ssh/known_hosts
             printf "%s" "${SSH_KEY}" > ~/.ssh/key
             chmod 600 ~/.ssh/key
-            ping -c 3 ${host6}
+            ping -c 1 ${i}
           done
 
       - name: Run Ansible Playbook
