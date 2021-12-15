@@ -5,7 +5,7 @@
   vars:
     base_config: 
       color: green
-      brightness: 50
+      brightness: 30
     python_packages:
       - blinkstick
       - psutil
