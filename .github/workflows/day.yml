@@ -51,7 +51,7 @@ jobs:
             ansible_user=pi
           options: |
             --verbose
-            --tag base-config -e color=green -e brightness=50
+            --tag base-config -e color=green -e brightness=20
 
       - name: Confirmation
         run: |
