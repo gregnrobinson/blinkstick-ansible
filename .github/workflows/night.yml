@@ -30,7 +30,6 @@ jobs:
             ssh-keyscan ${i} >> ~/.ssh/known_hosts
             printf "%s" "${SSH_KEY}" > ~/.ssh/key
             chmod 600 ~/.ssh/key
-            ping -c 1 -6 ${i}
           done
           
       - name: Run Ansible Playbook
