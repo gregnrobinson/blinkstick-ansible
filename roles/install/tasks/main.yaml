@@ -6,6 +6,11 @@
   become: true
   loop: "{{ python_packages }}"
   register: python
+  
+- name: set mode
+  shell: blinkstick --set-mode=3 2>&1 &
+  register: python
+  become: true
 
 - name: output
   debug:
